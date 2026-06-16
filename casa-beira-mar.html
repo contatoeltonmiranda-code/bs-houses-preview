@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa à Beira-Mar (Lote 48) — Moradia V3 com piscina privada | BS Houses</title>
+<meta name="description" content="BS House Praia da Lota — Casa à Beira-Mar: moradia V3 com piscina privada, a poucos metros da praia. Até 7 pessoas, 3 quartos, totalmente equipada no Algarve.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sage:#A7C4C9;
+  --sage-dark:#8FB2B8;
+  --gold:#C2A06A;
+  --gold-dark:#A8895A;
+  --cream:#F6F2EC;
+  --cream-2:#EFE9DF;
+  --ink:#3A4A4F;
+  --ink-soft:#5C6B70;
+  --white:#FFFFFF;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Montserrat',-apple-system,BlinkMacSystemFont,sans-serif;
+  --radius:18px;
+  --shadow:0 18px 50px -20px rgba(58,74,79,.28);
+  --shadow-sm:0 8px 26px -14px rgba(58,74,79,.30);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--white);line-height:1.7;font-weight:400;font-size:16px;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.12;color:var(--ink);letter-spacing:.2px}
+.eyebrow{font-family:var(--sans);font-weight:600;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 28px}
+.serif-accent{color:var(--gold);font-style:italic}
+section{position:relative}
+
+/* ===== Buttons ===== */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;padding:15px 30px;border-radius:50px;cursor:pointer;transition:.3s ease;border:1.5px solid transparent;white-space:nowrap}
+.btn-gold{background:var(--gold);color:#fff;box-shadow:0 12px 26px -12px rgba(194,160,106,.7)}
+.btn-gold:hover{background:var(--gold-dark);transform:translateY(-2px)}
+.btn-outline{background:transparent;border-color:rgba(255,255,255,.85);color:#fff}
+.btn-outline:hover{background:rgba(255,255,255,.16)}
+.btn-outline-ink{background:transparent;border-color:var(--gold);color:var(--gold)}
+.btn-outline-ink:hover{background:var(--gold);color:#fff}
+.btn svg{width:17px;height:17px;flex:none}
+
+/* ===== Header ===== */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.0);transition:.35s ease;padding:10px 0}
+header.scrolled{background:rgba(255,255,255,.96);box-shadow:0 6px 30px -18px rgba(58,74,79,.4);backdrop-filter:blur(10px);padding:6px 0}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;flex:none}
+.brand img{height:128px;width:auto;transition:.35s ease}
+header.scrolled .brand img{height:100px}
+.nav-links{display:flex;align-items:center;gap:34px;list-style:none}
+.nav-links a{font-family:var(--sans);font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;transition:.25s;position:relative;padding:4px 0}
+header.scrolled .nav-links a{color:var(--ink)}
+.nav-links a:hover{color:var(--gold)}
+header.scrolled .nav-links a:hover{color:var(--gold)}
+.nav-links a.active{color:var(--gold)}
+.nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--gold);border-radius:2px}
+.has-drop{position:relative}
+.has-drop>a::after{content:"▾";font-size:.7em;margin-left:5px;opacity:.7}
+.drop{position:absolute;top:130%;left:50%;transform:translateX(-50%) translateY(8px);background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:10px;min-width:240px;opacity:0;visibility:hidden;transition:.25s;list-style:none}
+.has-drop:hover .drop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.drop li a{display:block;color:var(--ink) !important;text-transform:none;letter-spacing:.02em;font-size:.82rem;font-weight:500;padding:10px 14px;border-radius:9px}
+.drop li a:hover{background:var(--cream);color:var(--gold) !important}
+.nav-right{display:flex;align-items:center;gap:16px;flex:none}
+.lang{display:flex;align-items:center;gap:6px;font-family:var(--sans);font-weight:600;font-size:.75rem;letter-spacing:.1em;color:#fff;border:1.5px solid rgba(255,255,255,.6);padding:9px 16px;border-radius:50px;cursor:pointer;transition:.25s}
+header.scrolled .lang{color:var(--ink);border-color:rgba(58,74,79,.3)}
+.lang:hover{border-color:var(--gold);color:var(--gold)}
+.wa-btn{background:var(--gold);color:#fff;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:11px 22px;border-radius:50px;transition:.3s;box-shadow:0 10px 22px -12px rgba(194,160,106,.7)}
+.wa-btn:hover{background:var(--gold-dark);transform:translateY(-2px)}
+.wa-btn svg{width:17px;height:17px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.burger span{width:26px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+header.scrolled .burger span{background:var(--ink)}
+/* ===== Hero ===== */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;background:#2a3a3f;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,30,34,.28) 0%,rgba(20,30,34,.04) 22%,rgba(20,30,34,0) 50%)}
+.hero-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:200px 28px 56px;width:100%}
+.hero-content{max-width:640px;background:rgba(255,255,255,.66);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.6);border-radius:22px;padding:40px 44px;box-shadow:0 24px 60px -24px rgba(58,74,79,.4)}
+.hero .eyebrow{color:var(--gold);margin-bottom:20px;display:block}
+.hero h1{font-size:clamp(2.3rem,4.6vw,3.7rem);color:var(--ink);font-weight:400;margin-bottom:18px;line-height:1.1}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero p.sub{color:var(--ink);font-size:1.08rem;font-weight:400;max-width:560px;margin-bottom:20px;line-height:1.65}
+.hero-intro{max-width:600px;margin-bottom:32px}
+.hero-intro p{color:var(--ink-soft);font-size:.98rem;font-weight:400;line-height:1.72;margin-bottom:13px}
+.hero-intro p:last-child{margin-bottom:0;color:var(--ink)}
+.hero-intro p strong{color:var(--ink);font-weight:600}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+
+/* ===== Casas (cards) ===== */
+.casas{background:var(--white);padding:52px 0}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 38px}
+.sec-head .eyebrow{display:block;margin-bottom:14px}
+.sec-head h2{font-size:clamp(2.1rem,4.2vw,3.1rem);margin-bottom:0;font-weight:400}
+.casas-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:28px;grid-auto-flow:dense}
+/* Bento: card 1 largo (4col) + card 2 (2col) na 1a linha; card3 + card4 + card5(largo) na 2a */
+.casa-card{grid-column:span 2}
+.casa-card.wide{grid-column:span 4}
+.casa-card.wide .casa-media{aspect-ratio:16/9}
+.casa-card.wide .casa-body{padding:30px 32px 32px}
+.casa-card.wide .casa-body h3{font-size:1.62rem}
+.casa-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid rgba(58,74,79,.06);transition:.35s ease;display:flex;flex-direction:column}
+.casa-card:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+.casa-media{position:relative;aspect-ratio:3/2;overflow:hidden;height:auto}
+.casa-media img{width:100%;height:100%;object-fit:cover;transition:.6s ease}
+.casa-card:hover .casa-media img{transform:scale(1.06)}
+.badge{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.94);color:var(--ink);font-family:var(--sans);font-weight:600;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;padding:7px 14px;border-radius:50px;display:flex;align-items:center;gap:6px;backdrop-filter:blur(4px);box-shadow:0 4px 14px -6px rgba(0,0,0,.25)}
+.badge svg{width:12px;height:12px;color:var(--gold)}
+.casa-body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1}
+.casa-body h3{font-size:1.42rem;margin-bottom:12px;line-height:1.18}
+.casa-body p{color:var(--ink-soft);font-size:.92rem;font-weight:300;line-height:1.72;margin-bottom:22px;flex:1}
+.casa-link{font-family:var(--sans);font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:8px;transition:.25s}
+.casa-link svg{width:15px;height:15px;transition:.25s}
+.casa-link:hover{color:var(--gold-dark)}
+.casa-link:hover svg{transform:translateX(5px)}
+
+/* ===== Valores ===== */
+.valores{background:var(--cream);padding:50px 0}
+.valores-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px;margin-top:0}
+.valor{text-align:center}
+.valor-ic{width:74px;height:74px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:var(--gold);background:rgba(194,160,106,.06);transition:.3s}
+.valor:hover .valor-ic{background:var(--gold);color:#fff;transform:translateY(-4px)}
+.valor-ic svg{width:32px;height:32px}
+.valor h4{font-size:1.24rem;margin-bottom:10px}
+.valor p{color:var(--ink-soft);font-size:.9rem;font-weight:300;line-height:1.7}
+/* ===== Reviews ===== */
+.reviews{background:var(--white);padding:52px 0;overflow:hidden}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:0}
+.rev-card{background:var(--cream);border-radius:var(--radius);padding:32px 30px;display:flex;flex-direction:column;border:1px solid rgba(58,74,79,.05);position:relative}
+.rev-card .quote{position:absolute;top:18px;right:26px;font-family:var(--serif);font-size:3.4rem;color:var(--sage);opacity:.5;line-height:1}
+.stars{display:flex;gap:3px;margin-bottom:18px}
+.stars svg{width:18px;height:18px;color:var(--gold)}
+.rev-text{font-family:var(--serif);font-size:1.12rem;font-style:italic;color:var(--ink);line-height:1.6;margin-bottom:22px;flex:1}
+.rev-author{display:flex;align-items:center;gap:12px;border-top:1px solid rgba(58,74,79,.1);padding-top:18px}
+.rev-ava{width:42px;height:42px;border-radius:50%;background:var(--sage);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:500;font-size:1.05rem;flex:none}
+.rev-meta strong{display:block;font-family:var(--sans);font-weight:600;font-size:.86rem;color:var(--ink)}
+.rev-meta span{font-size:.76rem;color:var(--ink-soft);font-weight:300}
+
+/* ===== FAQ ===== */
+.faq{background:var(--cream);padding:50px 0}
+.faq-wrap{max-width:820px;margin:0 auto 0}
+.faq-item{background:#fff;border-radius:14px;margin-bottom:14px;overflow:hidden;box-shadow:0 6px 20px -16px rgba(58,74,79,.4);border:1px solid rgba(58,74,79,.05)}
+.faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:18px;font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--ink);transition:.25s}
+.faq-q:hover{color:var(--gold)}
+.faq-icon{flex:none;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);transition:.35s;position:relative}
+.faq-icon::before,.faq-icon::after{content:"";position:absolute;background:var(--gold);border-radius:2px;transition:.3s}
+.faq-icon::before{width:12px;height:2px}
+.faq-icon::after{width:2px;height:12px}
+.faq-item.open .faq-icon{background:var(--gold);transform:rotate(180deg)}
+.faq-item.open .faq-icon::before,.faq-item.open .faq-icon::after{background:#fff}
+.faq-item.open .faq-icon::after{height:0}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a-inner{padding:0 26px 24px;color:var(--ink-soft);font-weight:300;font-size:.98rem;line-height:1.75}
+.faq-item.open .faq-a{max-height:260px}
+
+/* ===== Pergunta + botao ===== */
+.duvida{background:var(--cream);padding:0 0 50px;text-align:center}
+.duvida .inner{max-width:620px;margin:0 auto}
+.duvida h3{font-size:1.7rem;margin-bottom:8px}
+.duvida p{color:var(--ink-soft);font-weight:300;margin-bottom:26px}
+
+/* ===== CTA faixa ===== */
+.cta-band{position:relative;background:var(--sage);padding:79px 0 110px;text-align:center;overflow:hidden}
+.cta-band .waves{position:absolute;left:0;right:0;width:100%;height:auto;opacity:.5;pointer-events:none}
+.cta-band .waves.top{top:14px}
+.cta-band .waves.bottom{bottom:14px;transform:scaleY(-1)}
+.cta-band .inner{position:relative;z-index:2;max-width:660px;margin:0 auto}
+.cta-band h2{color:#fff;font-size:clamp(2rem,4vw,2.9rem);margin-bottom:12px;font-weight:400}
+.cta-band p{color:rgba(255,255,255,.92);font-weight:300;font-size:1.08rem;margin-bottom:32px}
+.cta-band .btn-outline{border-color:#fff;background:rgba(255,255,255,.12)}
+.cta-band .btn-outline:hover{background:#fff;color:var(--sage-dark)}
+
+/* ===== Footer ===== */
+footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1.4fr;gap:48px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12)}
+.foot-brand img{height:96px;width:auto;margin-bottom:20px;border-radius:50%;box-shadow:0 8px 24px -10px rgba(0,0,0,.5)}
+.foot-brand p{font-weight:300;font-size:.92rem;line-height:1.7;color:rgba(255,255,255,.62);max-width:280px}
+.foot-col h4{color:#fff;font-family:var(--sans);font-weight:600;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px}
+.foot-col ul{list-style:none}
+.foot-col ul li{margin-bottom:11px}
+.foot-col ul a{font-weight:300;font-size:.92rem;color:rgba(255,255,255,.72);transition:.25s}
+.foot-col ul a:hover{color:var(--gold)}
+.foot-contact li{display:flex;gap:12px;margin-bottom:16px;font-weight:300;font-size:.9rem;line-height:1.55;color:rgba(255,255,255,.72)}
+.foot-contact svg{width:17px;height:17px;color:var(--gold);flex:none;margin-top:3px}
+.foot-contact .anacom{display:block;font-size:.72rem;opacity:.5;margin-top:2px}
+.foot-bottom{padding-top:26px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:.82rem;font-weight:300;color:rgba(255,255,255,.5)}
+.foot-bottom a:hover{color:var(--gold)}
+
+/* ===== WhatsApp float ===== */
+.wa-float{position:fixed;bottom:26px;right:26px;z-index:90;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.6);transition:.3s;animation:wapulse 2.6s infinite}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:30px;height:30px;color:#fff}
+@keyframes wapulse{0%{box-shadow:0 12px 30px -8px rgba(37,211,102,.6),0 0 0 0 rgba(37,211,102,.4)}70%{box-shadow:0 12px 30px -8px rgba(37,211,102,.6),0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 12px 30px -8px rgba(37,211,102,.6),0 0 0 0 rgba(37,211,102,0)}}
+
+/* ===== Reveal ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+/* ===== Responsive ===== */
+@media(max-width:1024px){
+  .casas-grid{grid-template-columns:repeat(2,1fr)}
+  .casa-card,.casa-card.wide{grid-column:span 1}
+  .casa-card.wide .casa-media{aspect-ratio:3/2}
+  .casa-card.wide .casa-body{padding:26px 26px 28px}
+  .casa-card.wide .casa-body h3{font-size:1.42rem}
+  .valores-grid{grid-template-columns:repeat(2,1fr);gap:40px 28px}
+  .rev-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:36px}
+}
+@media(max-width:860px){
+  .nav-links,.lang{display:none}
+  .burger{display:flex}
+  .nav-right{gap:12px}
+  .brand img{height:78px}
+  header.scrolled .brand img{height:62px}
+  .hero h1{font-size:clamp(2.2rem,8vw,3rem)}
+  .mobile-menu{position:fixed;inset:0;background:rgba(255,255,255,.99);z-index:200;transform:translateX(100%);transition:.4s ease;display:flex;flex-direction:column;padding:90px 32px 40px;gap:6px}
+  .mobile-menu.open{transform:none}
+  .mobile-menu a{font-family:var(--serif);font-size:1.5rem;color:var(--ink);padding:14px 0;border-bottom:1px solid rgba(58,74,79,.08)}
+  .mobile-menu a:hover{color:var(--gold)}
+  .mm-close{position:absolute;top:24px;right:28px;font-size:2rem;color:var(--ink);cursor:pointer;line-height:1}
+  .mm-sub{font-size:1rem !important;color:var(--ink-soft) !important;padding-left:18px !important;border:none !important}
+}
+@media(max-width:680px){
+  .wrap,.hero-inner{padding-left:20px;padding-right:20px}
+  .casas-grid,.rev-grid,.valores-grid{grid-template-columns:1fr}
+  .casa-card,.casa-card.wide{grid-column:span 1}
+  .foot-grid{grid-template-columns:1fr;gap:34px}
+  .casas,.valores,.reviews,.faq{padding:40px 0}
+  .hero-content{padding:28px 24px;border-radius:18px}
+  .hero-cta{flex-direction:column}
+  .hero-cta .btn{justify-content:center}
+  .hero-intro p{font-size:.92rem}
+  .sec-head{margin-bottom:42px}
+  .foot-bottom{flex-direction:column;text-align:center}
+}
+.mobile-menu{display:none}
+@media(max-width:860px){.mobile-menu{display:flex}}
+
+/* ===== Casa individual ===== */
+/* HERO da casa */
+.house-hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;background:#2a3a3f;overflow:hidden}
+.house-hero::before{content:"";position:absolute;left:0;right:0;bottom:0;top:0;z-index:1;pointer-events:none;background:radial-gradient(120% 95% at 8% 92%,rgba(255,255,255,.92) 0%,rgba(255,255,255,.7) 20%,rgba(255,255,255,.32) 42%,rgba(255,255,255,.08) 60%,transparent 75%),linear-gradient(to top,rgba(255,255,255,.6) 0%,rgba(255,255,255,.18) 26%,transparent 50%)}
+.house-hero .hero-bg{position:absolute;inset:0;z-index:0}
+.house-hero .hero-bg img{width:100%;height:100%;object-fit:cover}
+
+.house-hero .inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 28px 60px;width:100%}.house-hero .h-card{max-width:680px;padding:0}
+.house-hero .h-badge{display:inline-flex;align-items:center;gap:7px;background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:600;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;padding:8px 16px;border-radius:50px;margin-bottom:20px;border:1px solid rgba(194,160,106,.35)}
+.house-hero .h-badge svg{width:13px;height:13px;color:var(--gold)}
+.house-hero h1{color:var(--ink);font-size:clamp(2.4rem,5.2vw,4rem);font-weight:400;line-height:1.05;margin-bottom:14px}
+.house-hero .h-sub{color:var(--ink-soft);font-size:1.12rem;font-weight:400;max-width:560px;margin-bottom:0}
+/* Highlights */
+.h-highlights{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:22px}
+.h-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.28);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.4);color:var(--ink);font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.02em;padding:9px 16px;border-radius:50px}
+.h-chip svg{width:17px;height:17px;color:var(--gold-dark);flex:none}
+
+/* GALERIA */
+.gallery{background:var(--white);padding:52px 0}
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:172px;gap:14px}
+.gal-item{position:relative;overflow:hidden;border-radius:14px;cursor:pointer;background:var(--cream-2)}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:.6s ease}
+.gal-item:hover img{transform:scale(1.06)}
+.gal-item.big{grid-column:1 / span 2;grid-row:1 / span 2}
+.gal-item::after{content:"";position:absolute;inset:0;background:rgba(58,74,79,0);transition:.3s}
+.gal-item:hover::after{background:rgba(58,74,79,.12)}
+
+/* SOBRE A CASA */
+.house-about{background:var(--cream);padding:52px 0}
+.about-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:44px;align-items:start}
+.about-text .eyebrow{display:block;margin-bottom:14px}
+.about-text h2{font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:400;margin-bottom:22px}
+.about-text p{color:var(--ink-soft);font-weight:300;font-size:1rem;line-height:1.8;margin-bottom:16px}
+.about-text p:last-child{margin-bottom:0}
+.about-text strong{color:var(--ink);font-weight:600}
+.exp-card{background:var(--white);border-radius:var(--radius);padding:38px 36px;box-shadow:var(--shadow-sm);border:1px solid rgba(58,74,79,.06);position:sticky;top:110px}
+.exp-card .exp-ic{width:58px;height:58px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);background:rgba(194,160,106,.06);margin-bottom:22px}
+.exp-card .exp-ic svg{width:28px;height:28px}
+.exp-card h3{font-size:1.5rem;font-weight:500;line-height:1.2;margin-bottom:14px}
+.exp-card p{color:var(--ink-soft);font-weight:300;font-size:.96rem;line-height:1.75}
+
+/* COMODIDADES */
+.amenities{background:var(--white);padding:52px 0}
+.amen-groups{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:8px;position:relative}
+.amen-groups::before{content:"";position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:1.5px;background:linear-gradient(to bottom,transparent 0%,var(--gold) 22%,var(--gold) 78%,transparent 100%);opacity:.7}
+.amen-group h4{font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid rgba(58,74,79,.1)}
+.amen-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:26px 18px}
+.amen-item{text-align:center}
+.amen-item .amen-ic{width:54px;height:54px;border-radius:14px;background:var(--cream);display:flex;align-items:center;justify-content:center;color:var(--gold);margin:0 auto 12px;transition:.3s}
+.amen-item:hover .amen-ic{background:var(--gold);color:#fff;transform:translateY(-4px)}
+.amen-item .amen-ic svg{width:26px;height:26px}
+.amen-item span{display:block;font-family:var(--sans);font-weight:500;font-size:.82rem;color:var(--ink-soft);line-height:1.4}
+
+/* LOCALIZACAO */
+.location{background:var(--cream);padding:52px 0}
+.loc-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:34px;align-items:stretch}
+.loc-card{background:var(--white);border-radius:var(--radius);padding:40px 38px;box-shadow:var(--shadow-sm);border:1px solid rgba(58,74,79,.06);display:flex;flex-direction:column;justify-content:center}
+.loc-card .loc-ic{width:54px;height:54px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);background:rgba(194,160,106,.06);margin-bottom:20px}
+.loc-card .loc-ic svg{width:26px;height:26px}
+.loc-card h3{font-size:1.6rem;font-weight:500;margin-bottom:10px}
+.loc-card p{color:var(--ink-soft);font-weight:300;font-size:1rem;line-height:1.75;margin-bottom:26px}
+.loc-photo{border-radius:var(--radius);overflow:hidden;min-height:300px;box-shadow:var(--shadow-sm)}
+.loc-photo img{width:100%;height:100%;object-fit:cover}
+
+/* CTA casa (variacao .cta-band com 2 botoes) */
+.cta-band .inner .cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.cta-band .btn-white{background:#fff;color:var(--sage-dark);border-color:#fff}
+.cta-band .btn-white:hover{background:rgba(255,255,255,.86);transform:translateY(-2px)}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:300;background:rgba(20,30,34,.92);display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:88vh;border-radius:10px;box-shadow:0 30px 80px -20px rgba(0,0,0,.7)}
+.lb-close{position:absolute;top:22px;right:30px;font-size:2.4rem;color:#fff;cursor:pointer;line-height:1;opacity:.85}
+.lb-close:hover{opacity:1}
+
+@media(max-width:1024px){
+  .about-grid{grid-template-columns:1fr;gap:30px}
+  .exp-card{position:static}
+  .loc-grid{grid-template-columns:1fr}
+  .loc-photo{min-height:240px}
+}
+@media(max-width:860px){
+  .amen-groups{grid-template-columns:1fr;gap:36px}
+  .amen-groups::before{display:none}
+}
+@media(max-width:680px){
+  .house-hero{min-height:78vh}
+  .house-hero .inner{padding-bottom:44px}
+  .house-hero .h-card{padding:0}
+  .house-hero::before{background:radial-gradient(150% 70% at 50% 100%,rgba(255,255,255,.94) 0%,rgba(255,255,255,.72) 26%,rgba(255,255,255,.34) 48%,rgba(255,255,255,.08) 66%,transparent 80%),linear-gradient(to top,rgba(255,255,255,.7) 0%,rgba(255,255,255,.24) 32%,transparent 56%)}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-auto-rows:130px}
+  .gal-item.big{grid-column:1 / -1;grid-row:auto;aspect-ratio:16/10}
+  .gal-item:not(.big){aspect-ratio:4/3}
+  .gallery,.house-about,.amenities,.location{padding:40px 0}
+  .h-chip{font-size:.76rem;padding:8px 13px}
+}
+
+</style>
+</head>
+<body>
+<!-- ===== HEADER ===== -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><img src="assets/img/logo.png" alt="BS Houses — A sua casa de férias no Algarve"></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Início</a></li>
+      <li class="has-drop"><a href="casas.html">Casas</a>
+        <ul class="drop">
+          <li><a href="casa-manta-rota.html">BS House — Manta Rota</a></li>
+          <li><a href="casa-beira-mar.html">Casa à Beira-Mar — Praia da Lota</a></li>
+          <li><a href="casa-do-mar.html">Casa do Mar — Praia da Lota</a></li>
+          <li><a href="casa-da-areia.html">Casa da Areia — Praia da Lota</a></li>
+          <li><a href="casa-cabanas-tavira.html">BS House — Cabanas Tavira</a></li>
+        </ul>
+      </li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="contactos.html">Contactos</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang">PT <span style="font-size:.7em">&#9662;</span></div>
+      <a href="https://wa.me/351913414117" class="wa-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        WhatsApp
+      </a>
+      <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE MENU ===== -->
+<nav class="mobile-menu" id="mobileMenu">
+  <span class="mm-close" id="mmClose">&times;</span>
+  <a href="index.html">Início</a>
+  <a href="casas.html" style="color:var(--gold)">Casas</a>
+  <a href="casa-manta-rota.html" class="mm-sub">— Manta Rota</a>
+  <a href="casa-beira-mar.html" class="mm-sub">— Casa à Beira-Mar</a>
+  <a href="casa-do-mar.html" class="mm-sub">— Casa do Mar</a>
+  <a href="casa-da-areia.html" class="mm-sub">— Casa da Areia</a>
+  <a href="casa-cabanas-tavira.html" class="mm-sub">— Cabanas Tavira</a>
+  <a href="sobre.html">Sobre</a>
+  <a href="contactos.html">Contactos</a>
+  <a href="https://wa.me/351913414117" target="_blank" rel="noopener" style="color:var(--gold)">Falar no WhatsApp</a>
+</nav>
+<!-- ================================================================
+     TEMPLATE PAGINA INDIVIDUAL DE CASA - BS Houses
+     Pagina: Casa a Beira-Mar (Lote 48) - Praia da Lota
+     Para replicar nas outras 4 casas, alterar APENAS os blocos
+     marcados com  [VARIA POR CASA].  Restante e fixo (DS da Home).
+================================================================= -->
+
+<!-- ===== HERO DA CASA ===== -->
+<section class="house-hero">
+  <!-- [VARIA POR CASA] foto principal -->
+  <div class="hero-bg"><img src="assets/img/beira-1.jpg" alt="Casa à Beira-Mar — moradia V3 com piscina privada e zona exterior" fetchpriority="high"></div>
+  <div class="inner reveal">
+    <div class="h-card">
+    <!-- [VARIA POR CASA] badge (zona) -->
+    <span class="h-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>Praia da Lota</span>
+    <!-- [VARIA POR CASA] titulo -->
+    <h1>BS House Praia da Lota — Casa à Beira-Mar</h1>
+    <!-- [VARIA POR CASA] subtitulo -->
+    <p class="h-sub">Moradia V3 com piscina privada, a poucos metros da praia.</p>
+    </div>
+    <!-- [VARIA POR CASA] highlights -->
+    <div class="h-highlights">
+      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13A4 4 0 0116 11"/></svg>Até 7 pessoas</span>
+      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 17v-5a2 2 0 012-2h16a2 2 0 012 2v5"/><path d="M2 17h20v3"/><path d="M6 10V8a2 2 0 012-2h2a2 2 0 012 2v2"/><path d="M12 10V8a2 2 0 012-2h2a2 2 0 012 2v2"/></svg>3 quartos</span>
+      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12V6a2 2 0 012-2 2 2 0 012 2"/><path d="M3 12h18v3a4 4 0 01-4 4H7a4 4 0 01-4-4z"/><path d="M6 19l-1 2M19 19l1 2"/><circle cx="8" cy="6" r="1"/></svg>3 casas de banho</span>
+      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 16c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M2 20c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M6 14V5a2 2 0 014 0M14 14V5a2 2 0 014 0"/></svg>Piscina privada</span>
+      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 13a10 10 0 0114 0"/><path d="M8.5 16.5a5 5 0 017 0"/><path d="M2 8.82a15 15 0 0120 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>Wi-Fi</span>
+      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="9" rx="2"/><path d="M6 18v1M10 18v2M14 18v1M18 18v2"/><line x1="6" y1="10" x2="18" y2="10"/></svg>Ar-condicionado</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALERIA ===== -->
+<!-- [VARIA POR CASA] fotos beira-1..6 -->
+<section class="gallery">
+  <div class="wrap">
+    <div class="gal-grid reveal">
+      <div class="gal-item big" data-src="assets/img/beira-1.jpg"><img src="assets/img/beira-1.jpg" alt="Piscina privada e zona exterior com mesa de refeições" loading="lazy"></div>
+      <div class="gal-item" data-src="assets/img/beira-2.jpg"><img src="assets/img/beira-2.jpg" alt="Terraço com vista para o mar" loading="lazy"></div>
+      <div class="gal-item" data-src="assets/img/beira-3.jpg"><img src="assets/img/beira-3.jpg" alt="Sala de estar e jantar" loading="lazy"></div>
+      <div class="gal-item" data-src="assets/img/beira-4.jpg"><img src="assets/img/beira-4.jpg" alt="Suite com varanda" loading="lazy"></div>
+      <div class="gal-item" data-src="assets/img/beira-5.jpg"><img src="assets/img/beira-5.jpg" alt="Cozinha equipada" loading="lazy"></div>
+      <div class="gal-item" data-src="assets/img/beira-6.jpg"><img src="assets/img/beira-6.jpg" alt="Casa de banho" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOBRE A CASA ===== -->
+<section class="house-about">
+  <div class="wrap">
+    <div class="about-grid">
+      <!-- [VARIA POR CASA] descricao -->
+      <div class="about-text reveal">
+        <span class="eyebrow">A casa</span>
+        <h2>Sobre a <span class="serif-accent">casa</span></h2>
+        <p>A <strong>BS House Praia da Lota — Casa à Beira-Mar</strong> é uma moradia V3 situada a poucos metros da praia, ideal para quem procura conforto e proximidade ao mar.</p>
+        <p>Com uma excelente zona exterior e piscina, áreas de lazer e espaços amplos, esta casa foi pensada para proporcionar uma estadia tranquila e funcional.</p>
+        <p>Distribuída por dois pisos, conta com sala de estar e jantar, cozinha equipada e três quartos, incluindo uma suite com varanda.</p>
+      </div>
+      <!-- card experiencia (texto pode variar por casa) -->
+      <div class="exp-card reveal">
+        <div class="exp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M2 20c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M6 14V5a2 2 0 014 0M14 14V5a2 2 0 014 0"/></svg></div>
+        <h3>A poucos passos da praia</h3>
+        <p>A poucos passos da praia, esta moradia oferece o ambiente ideal para férias em família ou com amigos, com privacidade, conforto e localização privilegiada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMODIDADES ===== -->
+<!-- [VARIA POR CASA] listas de comodidades -->
+<section class="amenities">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:left;max-width:none;margin-bottom:34px">
+      <span class="eyebrow" style="margin-bottom:14px">O que inclui</span>
+      <h2 style="font-weight:400">Comodidades</h2>
+    </div>
+    <div class="amen-groups">
+      <div class="amen-group reveal">
+        <h4>Cozinha e lavandaria</h4>
+        <div class="amen-list">
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="11" x2="20" y2="11"/><circle cx="8" cy="7" r="1"/><circle cx="12" cy="7" r="1"/><path d="M8 15v3"/></svg></div><span>Cozinha equipada</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9h13v5a4 4 0 01-4 4H8a4 4 0 01-4-4z"/><path d="M17 10h2a2 2 0 010 4h-2"/><path d="M8 5V3M12 5V3"/></svg></div><span>Máquina de café</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="8" x2="20" y2="8"/><circle cx="12" cy="14" r="3.5"/></svg></div><span>Máquina de lavar loiça</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><circle cx="12" cy="13" r="4"/><circle cx="8" cy="6" r=".6" fill="currentColor"/><circle cx="11" cy="6" r=".6" fill="currentColor"/></svg></div><span>Máquina de lavar roupa</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="1.5"/><rect x="5" y="8" width="9" height="8" rx="1"/><line x1="18" y1="9" x2="18" y2="9.01"/><line x1="18" y1="13" x2="18" y2="13.01"/></svg></div><span>Micro-ondas</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="9" x2="20" y2="9"/><circle cx="8" cy="6" r=".7" fill="currentColor"/><circle cx="12" cy="6" r=".7" fill="currentColor"/><rect x="7" y="12" width="10" height="6" rx="1"/></svg></div><span>Forno</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="2" width="12" height="20" rx="1.5"/><line x1="6" y1="10" x2="18" y2="10"/><line x1="9" y1="6" x2="9" y2="7.5"/><line x1="9" y1="13" x2="9" y2="15"/></svg></div><span>Frigorífico</span></div>
+        </div>
+      </div>
+      <div class="amen-group reveal">
+        <h4>Conforto e exterior</h4>
+        <div class="amen-list">
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 13a10 10 0 0114 0"/><path d="M8.5 16.5a5 5 0 017 0"/><path d="M2 8.82a15 15 0 0120 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div><span>Wi-Fi</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="9" rx="2"/><path d="M6 18v1M10 18v2M14 18v1M18 18v2"/><line x1="6" y1="10" x2="18" y2="10"/></svg></div><span>Ar-condicionado</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v5"/><path d="M12 7a5 5 0 015 5H7a5 5 0 015-5z"/><path d="M3 16h18"/><path d="M5 16l-1 5M19 16l1 5M9 16v5M15 16v5"/></svg></div><span>Zona exterior</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 16c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M2 20c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M6 14V5a2 2 0 014 0M14 14V5a2 2 0 014 0"/></svg></div><span>Piscina privada</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 16V8h4a2.5 2.5 0 010 5H9"/></svg></div><span>Estacionamento</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOCALIZACAO ===== -->
+<!-- [VARIA POR CASA] zona + foto + link mapa -->
+<section class="location">
+  <div class="wrap">
+    <div class="loc-grid">
+      <div class="loc-card reveal">
+        <div class="loc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Praia da Lota, Algarve</h3>
+        <p>A poucos metros da praia.</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Praia+da+Lota,+Algarve" target="_blank" rel="noopener" class="btn btn-outline-ink">Ver no mapa</a>
+      </div>
+      <div class="loc-photo reveal"><img src="assets/img/beira-2.jpg" alt="Terraço com vista para o mar na Praia da Lota" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="cta-band">
+  <svg class="waves top" viewBox="0 0 1200 40" preserveAspectRatio="none" width="100%" height="30"><path d="M0,22 Q100,8 200,22 T400,22 T600,22 T800,22 T1000,22 T1200,22" fill="none" stroke="#fff" stroke-width="1.6" opacity=".7"/><path d="M0,30 Q100,16 200,30 T400,30 T600,30 T800,30 T1000,30 T1200,30" fill="none" stroke="#fff" stroke-width="1.2" opacity=".4"/></svg>
+  <div class="wrap"><div class="inner reveal">
+    <h2>Para disponibilidade e valores, entre em contacto connosco</h2>
+    <p>Estamos disponíveis para ajudar a planear as suas próximas férias no Algarve.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/351913414117" target="_blank" rel="noopener" class="btn btn-white"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg> Falar no WhatsApp</a>
+      <a href="contactos.html" class="btn btn-outline">Pedir informações</a>
+    </div>
+  </div></div>
+  <svg class="waves bottom" viewBox="0 0 1200 40" preserveAspectRatio="none" width="100%" height="30"><path d="M0,22 Q100,8 200,22 T400,22 T600,22 T800,22 T1000,22 T1200,22" fill="none" stroke="#fff" stroke-width="1.6" opacity=".7"/><path d="M0,30 Q100,16 200,30 T400,30 T600,30 T800,30 T1000,30 T1200,30" fill="none" stroke="#fff" stroke-width="1.2" opacity=".4"/></svg>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/img/logo.png" alt="BS Houses">
+        <p>A sua casa de férias no Algarve. Moradias com piscina privada na Manta Rota, Praia da Lota e Cabanas de Tavira.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="casas.html">Casas</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="contactos.html">Contactos</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contactos</h4>
+        <ul class="foot-contact">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg><span>Telefone / WhatsApp<br><a href="https://wa.me/351913414117">+351 913 41 41 17</a><span class="anacom">(chamada para rede fixa/móvel nacional)</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg><span><a href="mailto:info@bshousesalgarve.com">info@bshousesalgarve.com</a></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Manta Rota, Praia da Lota e Cabanas de Tavira, Sotavento Algarvio, Portugal</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 BS Houses. Todos os direitos reservados.</span>
+      <span>A sua casa de férias no Algarve</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/351913414117" target="_blank" rel="noopener" class="wa-float" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+</a>
+<!-- ===== Lightbox galeria ===== -->
+<div class="lb" id="lb"><span class="lb-close" id="lbClose">&times;</span><img id="lbImg" src="" alt=""></div>
+<script>
+// ===== Header scroll =====
+const hdr=document.getElementById('hdr');
+const onScroll=()=>hdr.classList.toggle('scrolled',window.scrollY>40);
+onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+// ===== Mobile menu =====
+const mm=document.getElementById('mobileMenu');
+document.getElementById('burger').addEventListener('click',()=>mm.classList.add('open'));
+document.getElementById('mmClose').addEventListener('click',()=>mm.classList.remove('open'));
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+
+// ===== Lightbox galeria =====
+const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg');
+document.querySelectorAll('.gal-item').forEach(g=>g.addEventListener('click',()=>{
+  lbImg.src=g.getAttribute('data-src');lb.classList.add('open');
+}));
+const closeLb=()=>{lb.classList.remove('open');lbImg.src='';};
+document.getElementById('lbClose').addEventListener('click',closeLb);
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
+
+// ===== Reveal on scroll =====
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

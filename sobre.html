@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre — BS Houses | Casas de férias no Algarve</title>
+<meta name="description" content="Na BS Houses criamos experiências de estadia no Algarve, com foco no conforto, na tranquilidade e na proximidade ao mar. Moradias na Manta Rota, Praia da Lota e Cabanas de Tavira.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sage:#A7C4C9;--sage-dark:#8FB2B8;--gold:#C2A06A;--gold-dark:#A8895A;
+  --cream:#F6F2EC;--cream-2:#EFE9DF;--ink:#3A4A4F;--ink-soft:#5C6B70;--white:#FFFFFF;
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Montserrat',-apple-system,BlinkMacSystemFont,sans-serif;
+  --radius:18px;--shadow:0 18px 50px -20px rgba(58,74,79,.28);--shadow-sm:0 8px 26px -14px rgba(58,74,79,.30);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--white);line-height:1.7;font-weight:400;font-size:16px;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.12;color:var(--ink);letter-spacing:.2px}
+.eyebrow{font-family:var(--sans);font-weight:600;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 28px}
+.serif-accent{color:var(--gold);font-style:italic}
+section{position:relative}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;padding:15px 30px;border-radius:50px;cursor:pointer;transition:.3s ease;border:1.5px solid transparent;white-space:nowrap}
+.btn-gold{background:var(--gold);color:#fff;box-shadow:0 12px 26px -12px rgba(194,160,106,.7)}
+.btn-gold:hover{background:var(--gold-dark);transform:translateY(-2px)}
+.btn-outline{background:transparent;border-color:rgba(255,255,255,.85);color:#fff}
+.btn-outline:hover{background:rgba(255,255,255,.16)}
+.btn svg{width:17px;height:17px;flex:none}
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);box-shadow:0 6px 30px -18px rgba(58,74,79,.4);backdrop-filter:blur(10px);transition:.35s ease;padding:6px 0}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;flex:none}
+.brand img{height:100px;width:auto;transition:.35s ease}
+.nav-links{display:flex;align-items:center;gap:34px;list-style:none}
+.nav-links a{font-family:var(--sans);font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);transition:.25s;position:relative;padding:4px 0}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a.active{color:var(--gold)}
+.nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--gold);border-radius:2px}
+.has-drop{position:relative}
+.has-drop>a::after{content:"\25BE";font-size:.7em;margin-left:5px;opacity:.7}
+.drop{position:absolute;top:130%;left:50%;transform:translateX(-50%) translateY(8px);background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:10px;min-width:240px;opacity:0;visibility:hidden;transition:.25s;list-style:none}
+.has-drop:hover .drop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.drop li a{display:block;color:var(--ink) !important;text-transform:none;letter-spacing:.02em;font-size:.82rem;font-weight:500;padding:10px 14px;border-radius:9px}
+.drop li a:hover{background:var(--cream);color:var(--gold) !important}
+.nav-right{display:flex;align-items:center;gap:16px;flex:none}
+.lang{display:flex;align-items:center;gap:6px;font-family:var(--sans);font-weight:600;font-size:.75rem;letter-spacing:.1em;color:var(--ink);border:1.5px solid rgba(58,74,79,.3);padding:9px 16px;border-radius:50px;cursor:pointer;transition:.25s}
+.lang:hover{border-color:var(--gold);color:var(--gold)}
+.wa-btn{background:var(--gold);color:#fff;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:11px 22px;border-radius:50px;transition:.3s;box-shadow:0 10px 22px -12px rgba(194,160,106,.7)}
+.wa-btn:hover{background:var(--gold-dark);transform:translateY(-2px)}
+.wa-btn svg{width:17px;height:17px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.burger span{width:26px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
+.subhdr{padding:150px 0 0;background:linear-gradient(180deg,var(--cream) 0%,#fff 100%);overflow-x:clip}
+.about{background:#fff;padding:24px 0 60px;overflow-x:clip}
+.about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:60px;align-items:center;position:relative;min-height:540px}
+.about-photo{position:absolute;top:0;bottom:0;left:calc(-1 * (max(28px, 50vw - 572px) + 2px));width:calc(50% + max(28px, 50vw - 572px) + 2px - 30px)}
+.about-photo img{width:100%;height:100%;max-height:none;object-fit:cover;border-radius:0 26px 26px 0;box-shadow:var(--shadow)}
+.about-photo::after{content:"";position:absolute;inset:0;border-radius:0 26px 26px 0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);pointer-events:none}
+.about-grid>.about-content{grid-column:2}
+.about-content{max-width:560px}
+.about-content .eyebrow{display:block;margin-bottom:18px}
+.ornament{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.ornament .line{height:1px;width:64px;background:linear-gradient(90deg,var(--gold),rgba(194,160,106,0))}
+.ornament svg{width:46px;height:12px;color:var(--gold);flex:none}
+.about-content h1{font-size:clamp(2.2rem,4.4vw,3.4rem);font-weight:400;margin-bottom:26px;line-height:1.12}
+.about-content h1 em{color:var(--gold);font-style:italic}
+.about-content p{color:var(--ink-soft);font-size:1.02rem;font-weight:400;line-height:1.78;margin-bottom:18px}
+.about-content p:last-child{margin-bottom:0;color:var(--ink)}
+.cred{background:var(--cream);padding:0}
+.cred-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.cred-item{text-align:center;padding:56px 40px}
+.cred-item:not(:last-child){border-right:1px solid rgba(58,74,79,.12)}
+.cred-ic{width:74px;height:74px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:var(--gold);background:rgba(194,160,106,.06);transition:.3s}
+.cred-item:hover .cred-ic{background:var(--gold);color:#fff;transform:translateY(-4px)}
+.cred-ic svg{width:32px;height:32px}
+.cred-item h4{font-size:1.26rem;margin-bottom:11px}
+.cred-item p{color:var(--ink-soft);font-size:.92rem;font-weight:300;line-height:1.7;max-width:280px;margin:0 auto}
+.cta-band{position:relative;background:var(--sage);padding:79px 0 110px;text-align:center;overflow:hidden}
+.cta-band .waves{position:absolute;left:0;right:0;width:100%;height:auto;opacity:.5;pointer-events:none}
+.cta-band .waves.top{top:14px}
+.cta-band .waves.bottom{bottom:14px;transform:scaleY(-1)}
+.cta-band .inner{position:relative;z-index:2;max-width:660px;margin:0 auto}
+.cta-band h2{color:#fff;font-size:clamp(2rem,4vw,2.9rem);margin-bottom:12px;font-weight:400}
+.cta-band p{color:rgba(255,255,255,.92);font-weight:300;font-size:1.08rem;margin-bottom:32px}
+.cta-band .btn-outline{border-color:#fff;background:rgba(255,255,255,.12)}
+.cta-band .btn-outline:hover{background:#fff;color:var(--sage-dark)}
+footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1.4fr;gap:48px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12)}
+.foot-brand img{height:96px;width:auto;margin-bottom:20px;border-radius:50%;box-shadow:0 8px 24px -10px rgba(0,0,0,.5)}
+.foot-brand p{font-weight:300;font-size:.92rem;line-height:1.7;color:rgba(255,255,255,.62);max-width:280px}
+.foot-col h4{color:#fff;font-family:var(--sans);font-weight:600;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px}
+.foot-col ul{list-style:none}
+.foot-col ul li{margin-bottom:11px}
+.foot-col ul a{font-weight:300;font-size:.92rem;color:rgba(255,255,255,.72);transition:.25s}
+.foot-col ul a:hover{color:var(--gold)}
+.foot-contact li{display:flex;gap:12px;margin-bottom:16px;font-weight:300;font-size:.9rem;line-height:1.55;color:rgba(255,255,255,.72)}
+.foot-contact svg{width:17px;height:17px;color:var(--gold);flex:none;margin-top:3px}
+.foot-contact .anacom{display:block;font-size:.72rem;opacity:.5;margin-top:2px}
+.foot-bottom{padding-top:26px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:.82rem;font-weight:300;color:rgba(255,255,255,.5)}
+.foot-bottom a:hover{color:var(--gold)}
+.wa-float{position:fixed;bottom:26px;right:26px;z-index:90;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.6);transition:.3s;animation:wapulse 2.6s infinite}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:30px;height:30px;color:#fff}
+@keyframes wapulse{0%{box-shadow:0 12px 30px -8px rgba(37,211,102,.6),0 0 0 0 rgba(37,211,102,.4)}70%{box-shadow:0 12px 30px -8px rgba(37,211,102,.6),0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 12px 30px -8px rgba(37,211,102,.6),0 0 0 0 rgba(37,211,102,0)}}
+.reveal{opacity:0;transform:translateY(28px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(max-width:1024px){.about-grid{gap:44px}.foot-grid{grid-template-columns:1fr 1fr;gap:36px}}
+@media(max-width:860px){
+  .nav-links,.lang{display:none}
+  .burger{display:flex}
+  .nav-right{gap:12px}
+  .brand img{height:62px}
+  .subhdr{padding:120px 0 0}
+  .about-grid{grid-template-columns:1fr;gap:34px;min-height:0}
+  .about-photo{position:relative;top:auto;bottom:auto;left:auto;width:auto}
+  .about-grid>.about-content{grid-column:auto}
+  .about-photo img{max-height:420px;border-radius:26px}
+  .about-photo::after{border-radius:26px}
+  .about-content{max-width:none}
+  .cred-grid{grid-template-columns:1fr}
+  .cred-item:not(:last-child){border-right:none;border-bottom:1px solid rgba(58,74,79,.12)}
+  .cred-item{padding:42px 30px}
+  .mobile-menu{position:fixed;inset:0;background:rgba(255,255,255,.99);z-index:200;transform:translateX(100%);transition:.4s ease;display:flex;flex-direction:column;padding:90px 32px 40px;gap:6px}
+  .mobile-menu.open{transform:none}
+  .mobile-menu a{font-family:var(--serif);font-size:1.5rem;color:var(--ink);padding:14px 0;border-bottom:1px solid rgba(58,74,79,.08)}
+  .mobile-menu a:hover{color:var(--gold)}
+  .mm-close{position:absolute;top:24px;right:28px;font-size:2rem;color:var(--ink);cursor:pointer;line-height:1}
+  .mm-sub{font-size:1rem !important;color:var(--ink-soft) !important;padding-left:18px !important;border:none !important}
+}
+@media(max-width:680px){
+  .wrap{padding-left:20px;padding-right:20px}
+  .about{padding:18px 0 44px}
+  .about-content h1{font-size:clamp(2rem,8vw,2.6rem)}
+  .foot-grid{grid-template-columns:1fr;gap:34px}
+  .foot-bottom{flex-direction:column;text-align:center}
+}
+.mobile-menu{display:none}
+@media(max-width:860px){.mobile-menu{display:flex}}
+</style>
+</head>
+<body>
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><img src="assets/img/logo.png" alt="BS Houses — A sua casa de férias no Algarve"></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Início</a></li>
+      <li class="has-drop"><a href="casas.html">Casas</a>
+        <ul class="drop">
+          <li><a href="casa-manta-rota.html">BS House — Manta Rota</a></li>
+          <li><a href="casa-beira-mar.html">Casa à Beira-Mar — Praia da Lota</a></li>
+          <li><a href="casa-do-mar.html">Casa do Mar — Praia da Lota</a></li>
+          <li><a href="casa-da-areia.html">Casa da Areia — Praia da Lota</a></li>
+          <li><a href="casa-cabanas-tavira.html">BS House — Cabanas Tavira</a></li>
+        </ul>
+      </li>
+      <li><a href="sobre.html" class="active">Sobre</a></li>
+      <li><a href="contactos.html">Contactos</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang">PT <span style="font-size:.7em">&#9662;</span></div>
+      <a href="https://wa.me/351913414117" class="wa-btn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg> WhatsApp</a>
+      <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+  <span class="mm-close" id="mmClose">&times;</span>
+  <a href="index.html">Início</a>
+  <a href="casas.html">Casas</a>
+  <a href="casa-manta-rota.html" class="mm-sub">— Manta Rota</a>
+  <a href="casa-beira-mar.html" class="mm-sub">— Casa à Beira-Mar</a>
+  <a href="casa-do-mar.html" class="mm-sub">— Casa do Mar</a>
+  <a href="casa-da-areia.html" class="mm-sub">— Casa da Areia</a>
+  <a href="casa-cabanas-tavira.html" class="mm-sub">— Cabanas Tavira</a>
+  <a href="sobre.html">Sobre</a>
+  <a href="contactos.html">Contactos</a>
+  <a href="https://wa.me/351913414117" target="_blank" rel="noopener" style="color:var(--gold)">Falar no WhatsApp</a>
+</nav>
+<section class="subhdr">
+  <div class="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-photo reveal">
+          <img src="assets/img/sobre-hero.jpg" alt="Passadiço de madeira sobre as dunas em direção à praia, no Algarve">
+        </div>
+        <div class="about-content reveal">
+          <span class="eyebrow">Sobre</span>
+          <div class="ornament">
+            <span class="line"></span>
+            <svg viewBox="0 0 46 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h13M31 6h13"/><path d="M23 1l4 5-4 5-4-5z"/></svg>
+            <span class="line" style="background:linear-gradient(270deg,var(--gold),rgba(194,160,106,0))"></span>
+          </div>
+          <h1>O seu refúgio de férias no <em>Algarve</em></h1>
+          <p>Na BS Houses, criamos experiências de estadia no Algarve, com foco no conforto, na tranquilidade e na proximidade ao mar.</p>
+          <p>As nossas moradias, situadas na Manta Rota, Praia da Lota e Cabanas de Tavira, foram pensadas para quem valoriza espaços bem cuidados, zonas exteriores e uma localização privilegiada.</p>
+          <p>Mais do que alojamentos, proporcionamos um ambiente onde pode realmente descansar e aproveitar cada momento.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cred">
+  <div class="wrap">
+    <div class="cred-grid">
+      <div class="cred-item reveal">
+        <div class="cred-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-5.33-7-11a7 7 0 0114 0c0 5.67-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <h4>Localizações privilegiadas</h4>
+        <p>Perto das melhores praias, restaurantes e experiências que o Algarve tem para oferecer.</p>
+      </div>
+      <div class="cred-item reveal">
+        <div class="cred-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6"/><path d="M3 18h18"/><path d="M5 10V7a2 2 0 012-2h10a2 2 0 012 2v3"/><path d="M3 18v2M21 18v2"/></svg></div>
+        <h4>Conforto e qualidade</h4>
+        <p>Moradias equipadas com tudo o que precisa para uma estadia confortável e sem preocupações.</p>
+      </div>
+      <div class="cred-item reveal">
+        <div class="cred-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3c-1.8 2.4-4 4.2-4 7a4 4 0 008 0c0-2.8-2.2-4.6-4-7z"/><path d="M12 14v7"/><path d="M8.5 21h7"/></svg></div>
+        <h4>Tranquilidade e privacidade</h4>
+        <p>Ambientes exclusivos para relaxar no seu ritmo, com total privacidade e segurança.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cta-band">
+  <svg class="waves top" viewBox="0 0 1200 40" preserveAspectRatio="none" width="100%" height="30"><path d="M0,22 Q100,8 200,22 T400,22 T600,22 T800,22 T1000,22 T1200,22" fill="none" stroke="#fff" stroke-width="1.6" opacity=".7"/><path d="M0,30 Q100,16 200,30 T400,30 T600,30 T800,30 T1000,30 T1200,30" fill="none" stroke="#fff" stroke-width="1.2" opacity=".4"/></svg>
+  <div class="wrap"><div class="inner reveal">
+    <h2>Pronto para as suas próximas férias?</h2>
+    <p>Fale connosco e encontre a casa ideal para si.</p>
+    <a href="contactos.html" class="btn btn-outline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H5.17L4 17.17z"/></svg>
+      Contactar
+    </a>
+  </div></div>
+  <svg class="waves bottom" viewBox="0 0 1200 40" preserveAspectRatio="none" width="100%" height="30"><path d="M0,22 Q100,8 200,22 T400,22 T600,22 T800,22 T1000,22 T1200,22" fill="none" stroke="#fff" stroke-width="1.6" opacity=".7"/><path d="M0,30 Q100,16 200,30 T400,30 T600,30 T800,30 T1000,30 T1200,30" fill="none" stroke="#fff" stroke-width="1.2" opacity=".4"/></svg>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/img/logo.png" alt="BS Houses">
+        <p>A sua casa de férias no Algarve. Moradias com piscina privada na Manta Rota, Praia da Lota e Cabanas de Tavira.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="casas.html">Casas</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="contactos.html">Contactos</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contactos</h4>
+        <ul class="foot-contact">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg><span>Telefone / WhatsApp<br><a href="https://wa.me/351913414117">+351 913 41 41 17</a><span class="anacom">(chamada para rede fixa/móvel nacional)</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg><span><a href="mailto:info@bshousesalgarve.com">info@bshousesalgarve.com</a></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Manta Rota, Praia da Lota e Cabanas de Tavira, Sotavento Algarvio, Portugal</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 BS Houses. Todos os direitos reservados.</span>
+      <span>A sua casa de férias no Algarve</span>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/351913414117" target="_blank" rel="noopener" class="wa-float" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></a>
+<script>
+const hdr=document.getElementById('hdr');
+const onScroll=()=>hdr.classList.toggle('scrolled',window.scrollY>40);
+onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+const mm=document.getElementById('mobileMenu');
+document.getElementById('burger').addEventListener('click',()=>mm.classList.add('open'));
+document.getElementById('mmClose').addEventListener('click',()=>mm.classList.remove('open'));
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
