@@ -67,9 +67,18 @@ header.scrolled .nav-links a:hover{color:var(--gold)}
 .drop li a{display:block;color:var(--ink) !important;text-transform:none;letter-spacing:.02em;font-size:.82rem;font-weight:500;padding:10px 14px;border-radius:9px}
 .drop li a:hover{background:var(--cream);color:var(--gold) !important}
 .nav-right{display:flex;align-items:center;gap:16px;flex:none}
-.lang{display:flex;align-items:center;gap:6px;font-family:var(--sans);font-weight:600;font-size:.75rem;letter-spacing:.1em;color:#fff;border:1.5px solid rgba(255,255,255,.6);padding:9px 16px;border-radius:50px;cursor:pointer;transition:.25s}
-header.scrolled .lang{color:var(--ink);border-color:rgba(58,74,79,.3)}
-.lang:hover{border-color:var(--gold);color:var(--gold)}
+.lang{position:relative}
+.lang-toggle{display:flex;align-items:center;gap:6px;font-family:var(--sans);font-weight:600;font-size:.75rem;letter-spacing:.1em;color:#fff;border:1.5px solid rgba(255,255,255,.6);padding:9px 16px;border-radius:50px;cursor:pointer;transition:.25s;text-transform:uppercase}
+.lang-toggle .car{font-size:.7em;opacity:.7;transition:.25s}
+header.scrolled .lang-toggle{color:var(--ink);border-color:rgba(58,74,79,.3)}
+.lang-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.lang.open .lang-toggle{border-color:var(--gold);color:var(--gold)}
+.lang.open .lang-toggle .car{transform:rotate(180deg)}
+.lang-drop{position:absolute;top:140%;right:0;background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:8px;min-width:120px;opacity:0;visibility:hidden;transform:translateY(8px);transition:.25s;list-style:none;z-index:120}
+.lang.open .lang-drop{opacity:1;visibility:visible;transform:none}
+.lang-opt{display:flex;align-items:center;gap:8px;color:var(--ink);text-transform:none;letter-spacing:.04em;font-family:var(--sans);font-size:.82rem;font-weight:500;padding:9px 14px;border-radius:9px;cursor:pointer;transition:.2s}
+.lang-opt:hover{background:var(--cream);color:var(--gold)}
+.lang-opt.active{background:var(--cream);color:var(--gold);font-weight:600}
 .wa-btn{background:var(--gold);color:#fff;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:11px 22px;border-radius:50px;transition:.3s;box-shadow:0 10px 22px -12px rgba(194,160,106,.7)}
 .wa-btn:hover{background:var(--gold-dark);transform:translateY(-2px)}
 .wa-btn svg{width:17px;height:17px}
@@ -225,6 +234,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
   .mobile-menu a:hover{color:var(--gold)}
   .mm-close{position:absolute;top:24px;right:28px;font-size:2rem;color:var(--ink);cursor:pointer;line-height:1}
   .mm-sub{font-size:1rem !important;color:var(--ink-soft) !important;padding-left:18px !important;border:none !important}
+  .mm-lang{display:flex;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(58,74,79,.08)}
+  .mm-lang-opt{font-family:var(--sans) !important;font-size:.86rem !important;font-weight:600 !important;letter-spacing:.1em;padding:9px 20px !important;border:1.5px solid rgba(58,74,79,.2);border-radius:50px;cursor:pointer;color:var(--ink-soft) !important;text-transform:uppercase}
+  .mm-lang-opt.active{background:var(--gold);border-color:var(--gold);color:#fff !important}
 }
 @media(max-width:680px){
   .wrap,.hero-inner{padding-left:20px;padding-right:20px}
@@ -348,8 +360,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
   <div class="wrap nav">
     <a href="index.html" class="brand"><img src="assets/img/logo.png" alt="BS Houses — A sua casa de férias no Algarve"></a>
     <ul class="nav-links">
-      <li><a href="index.html">Início</a></li>
-      <li class="has-drop"><a href="casas.html" class="active">Casas</a>
+      <li><a href="index.html" data-en="Home">Início</a></li>
+      <li class="has-drop"><a href="casas.html" class="active" data-en="Properties">Casas</a>
         <ul class="drop">
           <li><a href="casa-manta-rota.html">BS House — Manta Rota</a></li>
           <li><a href="casa-beira-mar.html">Casa à Beira-Mar — Praia da Lota</a></li>
@@ -358,14 +370,20 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
           <li><a href="casa-cabanas-tavira.html">BS House — Cabanas Tavira</a></li>
         </ul>
       </li>
-      <li><a href="sobre.html">Sobre</a></li>
-      <li><a href="contactos.html">Contactos</a></li>
+      <li><a href="sobre.html" data-en="About">Sobre</a></li>
+      <li><a href="contactos.html" data-en="Contact">Contactos</a></li>
     </ul>
     <div class="nav-right">
-      <div class="lang">PT <span style="font-size:.7em">&#9662;</span></div>
+      <div class="lang" id="langSel">
+        <div class="lang-toggle" id="langToggle"><span data-lang-label>PT</span> <span class="car">&#9662;</span></div>
+        <ul class="lang-drop">
+          <li class="lang-opt active" data-lang="pt" onclick="__setLang('pt')">PT</li>
+          <li class="lang-opt" data-lang="en" onclick="__setLang('en')">EN</li>
+        </ul>
+      </div>
       <a href="https://wa.me/351913414117" class="wa-btn" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-        WhatsApp
+        <span data-en="WhatsApp">WhatsApp</span>
       </a>
       <div class="burger" id="burger"><span></span><span></span><span></span></div>
     </div>
@@ -375,16 +393,20 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
 <!-- ===== MOBILE MENU ===== -->
 <nav class="mobile-menu" id="mobileMenu">
   <span class="mm-close" id="mmClose">&times;</span>
-  <a href="index.html">Início</a>
-  <a href="casas.html" style="color:var(--gold)">Casas</a>
+  <a href="index.html" data-en="Home">Início</a>
+  <a href="casas.html" style="color:var(--gold)" data-en="Properties">Casas</a>
   <a href="casa-manta-rota.html" class="mm-sub">— Manta Rota</a>
   <a href="casa-beira-mar.html" class="mm-sub">— Casa à Beira-Mar</a>
   <a href="casa-do-mar.html" class="mm-sub">— Casa do Mar</a>
   <a href="casa-da-areia.html" class="mm-sub">— Casa da Areia</a>
   <a href="casa-cabanas-tavira.html" class="mm-sub">— Cabanas Tavira</a>
-  <a href="sobre.html">Sobre</a>
-  <a href="contactos.html">Contactos</a>
-  <a href="https://wa.me/351913414117" target="_blank" rel="noopener" style="color:var(--gold)">Falar no WhatsApp</a>
+  <a href="sobre.html" data-en="About">Sobre</a>
+  <a href="contactos.html" data-en="Contact">Contactos</a>
+  <a href="https://wa.me/351913414117" target="_blank" rel="noopener" style="color:var(--gold)" data-en="Chat on WhatsApp">Falar no WhatsApp</a>
+  <div class="mm-lang">
+    <span class="mm-lang-opt active" data-lang="pt" onclick="__setLang('pt')">PT</span>
+    <span class="mm-lang-opt" data-lang="en" onclick="__setLang('en')">EN</span>
+  </div>
 </nav>
 <!-- ================================================================
      TEMPLATE PAGINA INDIVIDUAL DE CASA - BS Houses
@@ -404,16 +426,16 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
     <!-- [VARIA POR CASA] titulo -->
     <h1>BS House Manta Rota</h1>
     <!-- [VARIA POR CASA] subtitulo -->
-    <p class="h-sub">Moradia V2 com piscina privada, a poucos minutos da Praia da Lota.</p>
+    <p class="h-sub" data-en="Two-bedroom villa with private pool, just minutes from Manta Rota Beach">Moradia V2 com piscina privada, a poucos minutos da Praia da Lota.</p>
     </div>
     <!-- [VARIA POR CASA] highlights -->
     <div class="h-highlights">
-      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13A4 4 0 0116 11"/></svg>Até 6 pessoas</span>
-      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 17v-5a2 2 0 012-2h16a2 2 0 012 2v5"/><path d="M2 17h20v3"/><path d="M6 10V8a2 2 0 012-2h2a2 2 0 012 2v2"/><path d="M12 10V8a2 2 0 012-2h2a2 2 0 012 2v2"/></svg>2 quartos</span>
-      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12V6a2 2 0 012-2 2 2 0 012 2"/><path d="M3 12h18v3a4 4 0 01-4 4H7a4 4 0 01-4-4z"/><path d="M6 19l-1 2M19 19l1 2"/><circle cx="8" cy="6" r="1"/></svg>2 casas de banho</span>
-      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 16c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M2 20c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M6 14V5a2 2 0 014 0M14 14V5a2 2 0 014 0"/></svg>Piscina privada</span>
-      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 13a10 10 0 0114 0"/><path d="M8.5 16.5a5 5 0 017 0"/><path d="M2 8.82a15 15 0 0120 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>Wi-Fi</span>
-      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="9" rx="2"/><path d="M6 18v1M10 18v2M14 18v1M18 18v2"/><line x1="6" y1="10" x2="18" y2="10"/></svg>Ar-condicionado</span>
+      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13A4 4 0 0116 11"/></svg><span data-en="Up to 6 guests">Até 6 pessoas</span></span>
+      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 17v-5a2 2 0 012-2h16a2 2 0 012 2v5"/><path d="M2 17h20v3"/><path d="M6 10V8a2 2 0 012-2h2a2 2 0 012 2v2"/><path d="M12 10V8a2 2 0 012-2h2a2 2 0 012 2v2"/></svg><span data-en="2 bedrooms">2 quartos</span></span>
+      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12V6a2 2 0 012-2 2 2 0 012 2"/><path d="M3 12h18v3a4 4 0 01-4 4H7a4 4 0 01-4-4z"/><path d="M6 19l-1 2M19 19l1 2"/><circle cx="8" cy="6" r="1"/></svg><span data-en="2 bathrooms">2 casas de banho</span></span>
+      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 16c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M2 20c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M6 14V5a2 2 0 014 0M14 14V5a2 2 0 014 0"/></svg><span data-en="Private pool">Piscina privada</span></span>
+      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 13a10 10 0 0114 0"/><path d="M8.5 16.5a5 5 0 017 0"/><path d="M2 8.82a15 15 0 0120 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg><span data-en="Wi-Fi">Wi-Fi</span></span>
+      <span class="h-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="9" rx="2"/><path d="M6 18v1M10 18v2M14 18v1M18 18v2"/><line x1="6" y1="10" x2="18" y2="10"/></svg><span data-en="Air conditioning">Ar-condicionado</span></span>
     </div>
   </div>
 </section>
@@ -439,17 +461,17 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
     <div class="about-grid">
       <!-- [VARIA POR CASA] descricao -->
       <div class="about-text reveal">
-        <span class="eyebrow">A casa</span>
-        <h2>Sobre a <span class="serif-accent">casa</span></h2>
-        <p>A <strong>BS House - Manta Rota</strong> é uma moradia pensada para quem procura conforto, tranquilidade e proximidade ao mar.</p>
-        <p>Localizada a poucos minutos da Praia da Manta Rota, combina espaços interiores funcionais com uma agradável zona exterior com piscina, ideal para momentos de descanso em família.</p>
-        <p>Com dois pisos, dispõe de sala de estar e jantar, cozinha equipada e dois quartos, oferecendo o ambiente perfeito para uma estadia prática e relaxante no Algarve.</p>
+        <span class="eyebrow" data-en="The property">A casa</span>
+        <h2 data-en="About the <span class=&quot;serif-accent&quot;>property</span>">Sobre a <span class="serif-accent">casa</span></h2>
+        <p data-en="BS House &ndash; Manta Rota is a villa designed for those seeking comfort, tranquillity, and proximity to the sea.">A <strong>BS House - Manta Rota</strong> é uma moradia pensada para quem procura conforto, tranquilidade e proximidade ao mar.</p>
+        <p data-en="Located just a few minutes from Manta Rota Beach, it combines functional indoor spaces with a pleasant outdoor area featuring a private swimming pool, perfect for relaxing family moments.">Localizada a poucos minutos da Praia da Manta Rota, combina espaços interiores funcionais com uma agradável zona exterior com piscina, ideal para momentos de descanso em família.</p>
+        <p data-en="Spread over two floors, the villa offers a living and dining area, a fully equipped kitchen, and two bedrooms, providing the ideal setting for a practical and relaxing stay in the Algarve.">Com dois pisos, dispõe de sala de estar e jantar, cozinha equipada e dois quartos, oferecendo o ambiente perfeito para uma estadia prática e relaxante no Algarve.</p>
       </div>
       <!-- card experiencia (texto pode variar por casa) -->
       <div class="exp-card reveal">
         <div class="exp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M2 20c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M6 14V5a2 2 0 014 0M14 14V5a2 2 0 014 0"/></svg></div>
-        <h3>Uma experiência pensada para férias tranquilas</h3>
-        <p>Desfrute de dias calmos no Sotavento Algarvio, com acesso rápido à praia, zonas exteriores privadas e todas as comodidades para uma estadia confortável.</p>
+        <h3 data-en="An experience designed for peaceful holidays">Uma experiência pensada para férias tranquilas</h3>
+        <p data-en="Enjoy peaceful days in the Eastern Algarve, with quick access to the beach, private outdoor spaces, and all the amenities needed for a comfortable stay.">Desfrute de dias calmos no Sotavento Algarvio, com acesso rápido à praia, zonas exteriores privadas e todas as comodidades para uma estadia confortável.</p>
       </div>
     </div>
   </div>
@@ -460,30 +482,30 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
 <section class="amenities">
   <div class="wrap">
     <div class="sec-head reveal" style="text-align:left;max-width:none;margin-bottom:34px">
-      <span class="eyebrow" style="margin-bottom:14px">O que inclui</span>
-      <h2 style="font-weight:400">Comodidades</h2>
+      <span class="eyebrow" style="margin-bottom:14px" data-en="WHAT'S INCLUDED">O que inclui</span>
+      <h2 style="font-weight:400" data-en="Amenities">Comodidades</h2>
     </div>
     <div class="amen-groups">
       <div class="amen-group reveal">
-        <h4>Cozinha e lavandaria</h4>
+        <h4 data-en="Kitchen &amp; laundry">Cozinha e lavandaria</h4>
         <div class="amen-list">
-          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="11" x2="20" y2="11"/><circle cx="8" cy="7" r="1"/><circle cx="12" cy="7" r="1"/><path d="M8 15v3"/></svg></div><span>Cozinha equipada</span></div>
-          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9h13v5a4 4 0 01-4 4H8a4 4 0 01-4-4z"/><path d="M17 10h2a2 2 0 010 4h-2"/><path d="M8 5V3M12 5V3"/></svg></div><span>Máquina de café</span></div>
-          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="8" x2="20" y2="8"/><circle cx="12" cy="14" r="3.5"/></svg></div><span>Máquina de lavar loiça</span></div>
-          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><circle cx="12" cy="13" r="4"/><circle cx="8" cy="6" r=".6" fill="currentColor"/><circle cx="11" cy="6" r=".6" fill="currentColor"/></svg></div><span>Máquina de lavar roupa</span></div>
-          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="1.5"/><rect x="5" y="8" width="9" height="8" rx="1"/><line x1="18" y1="9" x2="18" y2="9.01"/><line x1="18" y1="13" x2="18" y2="13.01"/></svg></div><span>Micro-ondas</span></div>
-          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="9" x2="20" y2="9"/><circle cx="8" cy="6" r=".7" fill="currentColor"/><circle cx="12" cy="6" r=".7" fill="currentColor"/><rect x="7" y="12" width="10" height="6" rx="1"/></svg></div><span>Forno</span></div>
-          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="2" width="12" height="20" rx="1.5"/><line x1="6" y1="10" x2="18" y2="10"/><line x1="9" y1="6" x2="9" y2="7.5"/><line x1="9" y1="13" x2="9" y2="15"/></svg></div><span>Frigorífico</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="11" x2="20" y2="11"/><circle cx="8" cy="7" r="1"/><circle cx="12" cy="7" r="1"/><path d="M8 15v3"/></svg></div><span data-en="Fully equipped kitchen">Cozinha equipada</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9h13v5a4 4 0 01-4 4H8a4 4 0 01-4-4z"/><path d="M17 10h2a2 2 0 010 4h-2"/><path d="M8 5V3M12 5V3"/></svg></div><span data-en="Coffee machine">Máquina de café</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="8" x2="20" y2="8"/><circle cx="12" cy="14" r="3.5"/></svg></div><span data-en="Dishwasher">Máquina de lavar loiça</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><circle cx="12" cy="13" r="4"/><circle cx="8" cy="6" r=".6" fill="currentColor"/><circle cx="11" cy="6" r=".6" fill="currentColor"/></svg></div><span data-en="Washing machine">Máquina de lavar roupa</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="1.5"/><rect x="5" y="8" width="9" height="8" rx="1"/><line x1="18" y1="9" x2="18" y2="9.01"/><line x1="18" y1="13" x2="18" y2="13.01"/></svg></div><span data-en="Microwave">Micro-ondas</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="9" x2="20" y2="9"/><circle cx="8" cy="6" r=".7" fill="currentColor"/><circle cx="12" cy="6" r=".7" fill="currentColor"/><rect x="7" y="12" width="10" height="6" rx="1"/></svg></div><span data-en="Oven">Forno</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="2" width="12" height="20" rx="1.5"/><line x1="6" y1="10" x2="18" y2="10"/><line x1="9" y1="6" x2="9" y2="7.5"/><line x1="9" y1="13" x2="9" y2="15"/></svg></div><span data-en="Fridge">Frigorífico</span></div>
         </div>
       </div>
       <div class="amen-group reveal">
-        <h4>Conforto e exterior</h4>
+        <h4 data-en="Comfort &amp; outdoor">Conforto e exterior</h4>
         <div class="amen-list">
-          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 13a10 10 0 0114 0"/><path d="M8.5 16.5a5 5 0 017 0"/><path d="M2 8.82a15 15 0 0120 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div><span>Wi-Fi</span></div>
-          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="9" rx="2"/><path d="M6 18v1M10 18v2M14 18v1M18 18v2"/><line x1="6" y1="10" x2="18" y2="10"/></svg></div><span>Ar-condicionado</span></div>
-          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v5"/><path d="M12 7a5 5 0 015 5H7a5 5 0 015-5z"/><path d="M3 16h18"/><path d="M5 16l-1 5M19 16l1 5M9 16v5M15 16v5"/></svg></div><span>Zona exterior</span></div>
-          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 16c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M2 20c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M6 14V5a2 2 0 014 0M14 14V5a2 2 0 014 0"/></svg></div><span>Piscina privada</span></div>
-          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 16V8h4a2.5 2.5 0 010 5H9"/></svg></div><span>Estacionamento privado</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 13a10 10 0 0114 0"/><path d="M8.5 16.5a5 5 0 017 0"/><path d="M2 8.82a15 15 0 0120 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div><span data-en="Wi-Fi">Wi-Fi</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="9" rx="2"/><path d="M6 18v1M10 18v2M14 18v1M18 18v2"/><line x1="6" y1="10" x2="18" y2="10"/></svg></div><span data-en="Air conditioning">Ar-condicionado</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v5"/><path d="M12 7a5 5 0 015 5H7a5 5 0 015-5z"/><path d="M3 16h18"/><path d="M5 16l-1 5M19 16l1 5M9 16v5M15 16v5"/></svg></div><span data-en="Outdoor area">Zona exterior</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 16c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M2 20c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M6 14V5a2 2 0 014 0M14 14V5a2 2 0 014 0"/></svg></div><span data-en="Private pool">Piscina privada</span></div>
+          <div class="amen-item"><div class="amen-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 16V8h4a2.5 2.5 0 010 5H9"/></svg></div><span data-en="Private parking">Estacionamento privado</span></div>
         </div>
       </div>
     </div>
@@ -498,8 +520,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
       <div class="loc-card reveal">
         <div class="loc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
         <h3>Manta Rota, Algarve</h3>
-        <p>Zona tranquila, a poucos minutos a pé da praia.</p>
-        <a href="https://www.google.com/maps/search/?api=1&query=Manta+Rota,+Algarve" target="_blank" rel="noopener" class="btn btn-outline-ink">Ver no mapa</a>
+        <p data-en="Quiet area, just a few minutes' walk from the beach.">Zona tranquila, a poucos minutos a pé da praia.</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Manta+Rota,+Algarve" target="_blank" rel="noopener" class="btn btn-outline-ink" data-en="View on map">Ver no mapa</a>
       </div>
       <div class="loc-photo reveal"><img src="assets/img/manta-2.jpg" alt="Zona exterior junto à praia em Manta Rota" loading="lazy"></div>
     </div>
@@ -510,11 +532,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
 <section class="cta-band">
   <svg class="waves top" viewBox="0 0 1200 40" preserveAspectRatio="none" width="100%" height="30"><path d="M0,22 Q100,8 200,22 T400,22 T600,22 T800,22 T1000,22 T1200,22" fill="none" stroke="#fff" stroke-width="1.6" opacity=".7"/><path d="M0,30 Q100,16 200,30 T400,30 T600,30 T800,30 T1000,30 T1200,30" fill="none" stroke="#fff" stroke-width="1.2" opacity=".4"/></svg>
   <div class="wrap"><div class="inner reveal">
-    <h2>Para disponibilidade e valores, entre em contacto connosco</h2>
-    <p>Estamos disponíveis para ajudar a planear as suas próximas férias no Algarve.</p>
+    <h2 data-en="For availability and rates, please contact us">Para disponibilidade e valores, entre em contacto connosco</h2>
+    <p data-en="We're available to help you plan your next holiday in the Algarve.">Estamos disponíveis para ajudar a planear as suas próximas férias no Algarve.</p>
     <div class="cta-btns">
-      <a href="https://wa.me/351913414117" target="_blank" rel="noopener" class="btn btn-white"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg> Falar no WhatsApp</a>
-      <a href="contactos.html" class="btn btn-outline">Pedir informações</a>
+      <a href="https://wa.me/351913414117" target="_blank" rel="noopener" class="btn btn-white"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg> <span data-en="Chat on WhatsApp">Falar no WhatsApp</span></a>
+      <a href="contactos.html" class="btn btn-outline" data-en="Request information">Pedir informações</a>
     </div>
   </div></div>
   <svg class="waves bottom" viewBox="0 0 1200 40" preserveAspectRatio="none" width="100%" height="30"><path d="M0,22 Q100,8 200,22 T400,22 T600,22 T800,22 T1000,22 T1200,22" fill="none" stroke="#fff" stroke-width="1.6" opacity=".7"/><path d="M0,30 Q100,16 200,30 T400,30 T600,30 T800,30 T1000,30 T1200,30" fill="none" stroke="#fff" stroke-width="1.2" opacity=".4"/></svg>
@@ -529,7 +551,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
         <p>A sua casa de férias no Algarve. Moradias com piscina privada na Manta Rota, Praia da Lota e Cabanas de Tavira.</p>
       </div>
       <div class="foot-col">
-        <h4>Navegação</h4>
+        <h4 data-en="Navigation">Navegação</h4>
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="casas.html">Casas</a></li>
@@ -583,6 +605,33 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
 // ===== Reveal on scroll =====
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -60px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script>
+(function(){
+  function apply(l){
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      if(el.dataset.pt===undefined) el.dataset.pt=el.innerHTML;
+      el.innerHTML = (l==='en') ? el.dataset.en : el.dataset.pt;
+    });
+    document.querySelectorAll('[data-en-ph]').forEach(function(el){
+      if(el.dataset.ptPh===undefined) el.dataset.ptPh=el.getAttribute('placeholder')||'';
+      el.setAttribute('placeholder',(l==='en')?el.getAttribute('data-en-ph'):el.dataset.ptPh);
+    });
+    document.documentElement.lang=l;
+    try{localStorage.setItem('bs_lang',l);}catch(e){}
+    document.querySelectorAll('[data-lang-label]').forEach(function(el){el.textContent=l.toUpperCase();});
+    document.querySelectorAll('.lang-opt,.mm-lang-opt').forEach(function(o){o.classList.toggle('active',o.getAttribute('data-lang')===l);});
+    var sel=document.getElementById('langSel'); if(sel) sel.classList.remove('open');
+  }
+  window.__setLang=apply;
+  var s=null; try{s=localStorage.getItem('bs_lang');}catch(e){}
+  document.addEventListener('DOMContentLoaded',function(){
+    apply(s||'pt');
+    var sel=document.getElementById('langSel'), tg=document.getElementById('langToggle');
+    if(tg&&sel){tg.addEventListener('click',function(e){e.stopPropagation();sel.classList.toggle('open');});}
+    document.addEventListener('click',function(e){if(sel&&!sel.contains(e.target))sel.classList.remove('open');});
+  });
+})();
 </script>
 
 </body>

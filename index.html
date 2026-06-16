@@ -67,9 +67,18 @@ header.scrolled .nav-links a:hover{color:var(--gold)}
 .drop li a{display:block;color:var(--ink) !important;text-transform:none;letter-spacing:.02em;font-size:.82rem;font-weight:500;padding:10px 14px;border-radius:9px}
 .drop li a:hover{background:var(--cream);color:var(--gold) !important}
 .nav-right{display:flex;align-items:center;gap:16px;flex:none}
-.lang{display:flex;align-items:center;gap:6px;font-family:var(--sans);font-weight:600;font-size:.75rem;letter-spacing:.1em;color:#fff;border:1.5px solid rgba(255,255,255,.6);padding:9px 16px;border-radius:50px;cursor:pointer;transition:.25s}
-header.scrolled .lang{color:var(--ink);border-color:rgba(58,74,79,.3)}
-.lang:hover{border-color:var(--gold);color:var(--gold)}
+.lang{position:relative}
+.lang-toggle{display:flex;align-items:center;gap:6px;font-family:var(--sans);font-weight:600;font-size:.75rem;letter-spacing:.1em;color:#fff;border:1.5px solid rgba(255,255,255,.6);padding:9px 16px;border-radius:50px;cursor:pointer;transition:.25s;text-transform:uppercase}
+.lang-toggle .car{font-size:.7em;opacity:.7;transition:.25s}
+header.scrolled .lang-toggle{color:var(--ink);border-color:rgba(58,74,79,.3)}
+.lang-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.lang.open .lang-toggle{border-color:var(--gold);color:var(--gold)}
+.lang.open .lang-toggle .car{transform:rotate(180deg)}
+.lang-drop{position:absolute;top:140%;right:0;background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:8px;min-width:120px;opacity:0;visibility:hidden;transform:translateY(8px);transition:.25s;list-style:none;z-index:120}
+.lang.open .lang-drop{opacity:1;visibility:visible;transform:none}
+.lang-opt{display:flex;align-items:center;gap:8px;color:var(--ink);text-transform:none;letter-spacing:.04em;font-family:var(--sans);font-size:.82rem;font-weight:500;padding:9px 14px;border-radius:9px;cursor:pointer;transition:.2s}
+.lang-opt:hover{background:var(--cream);color:var(--gold)}
+.lang-opt.active{background:var(--cream);color:var(--gold);font-weight:600}
 .wa-btn{background:var(--gold);color:#fff;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:11px 22px;border-radius:50px;transition:.3s;box-shadow:0 10px 22px -12px rgba(194,160,106,.7)}
 .wa-btn:hover{background:var(--gold-dark);transform:translateY(-2px)}
 .wa-btn svg{width:17px;height:17px}
@@ -225,6 +234,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
   .mobile-menu a:hover{color:var(--gold)}
   .mm-close{position:absolute;top:24px;right:28px;font-size:2rem;color:var(--ink);cursor:pointer;line-height:1}
   .mm-sub{font-size:1rem !important;color:var(--ink-soft) !important;padding-left:18px !important;border:none !important}
+  .mm-lang{display:flex;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(58,74,79,.08)}
+  .mm-lang-opt{font-family:var(--sans) !important;font-size:.86rem !important;font-weight:600 !important;letter-spacing:.1em;padding:9px 20px !important;border:1.5px solid rgba(58,74,79,.2);border-radius:50px;cursor:pointer;color:var(--ink-soft) !important;text-transform:uppercase}
+  .mm-lang-opt.active{background:var(--gold);border-color:var(--gold);color:#fff !important}
 }
 @media(max-width:680px){
   .wrap,.hero-inner{padding-left:20px;padding-right:20px}
@@ -249,8 +261,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
   <div class="wrap nav">
     <a href="#" class="brand"><img src="assets/img/logo.png" alt="BS Houses — A sua casa de férias no Algarve"></a>
     <ul class="nav-links">
-      <li><a href="#" class="active">Início</a></li>
-      <li class="has-drop"><a href="#casas">Casas</a>
+      <li><a href="#" class="active" data-en="Home">Início</a></li>
+      <li class="has-drop"><a href="#casas" data-en="Properties">Casas</a>
         <ul class="drop">
           <li><a href="casa-manta-rota.html">BS House — Manta Rota</a></li>
           <li><a href="casa-beira-mar.html">Casa à Beira-Mar — Praia da Lota</a></li>
@@ -259,14 +271,20 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
           <li><a href="casa-cabanas-tavira.html">BS House — Cabanas Tavira</a></li>
         </ul>
       </li>
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#contactos">Contactos</a></li>
+      <li><a href="#sobre" data-en="About">Sobre</a></li>
+      <li><a href="#contactos" data-en="Contact">Contactos</a></li>
     </ul>
     <div class="nav-right">
-      <div class="lang">PT <span style="font-size:.7em">&#9662;</span></div>
+      <div class="lang" id="langSel">
+        <div class="lang-toggle" id="langToggle"><span data-lang-label>PT</span> <span class="car">&#9662;</span></div>
+        <ul class="lang-drop">
+          <li class="lang-opt active" data-lang="pt" onclick="__setLang('pt')">PT</li>
+          <li class="lang-opt" data-lang="en" onclick="__setLang('en')">EN</li>
+        </ul>
+      </div>
       <a href="https://wa.me/351913414117" class="wa-btn" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-        WhatsApp
+        <span data-en="WhatsApp">WhatsApp</span>
       </a>
       <div class="burger" id="burger"><span></span><span></span><span></span></div>
     </div>
@@ -276,16 +294,20 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
 <!-- ===== MOBILE MENU ===== -->
 <nav class="mobile-menu" id="mobileMenu">
   <span class="mm-close" id="mmClose">&times;</span>
-  <a href="#">Início</a>
-  <a href="#casas">Casas</a>
+  <a href="#" data-en="Home">Início</a>
+  <a href="#casas" data-en="Properties">Casas</a>
   <a href="casa-manta-rota.html" class="mm-sub">— Manta Rota</a>
   <a href="casa-beira-mar.html" class="mm-sub">— Casa à Beira-Mar</a>
   <a href="casa-do-mar.html" class="mm-sub">— Casa do Mar</a>
   <a href="casa-da-areia.html" class="mm-sub">— Casa da Areia</a>
   <a href="casa-cabanas-tavira.html" class="mm-sub">— Cabanas Tavira</a>
-  <a href="#sobre">Sobre</a>
-  <a href="#contactos">Contactos</a>
-  <a href="https://wa.me/351913414117" target="_blank" rel="noopener" style="color:var(--gold)">Falar no WhatsApp</a>
+  <a href="#sobre" data-en="About">Sobre</a>
+  <a href="#contactos" data-en="Contact">Contactos</a>
+  <a href="https://wa.me/351913414117" target="_blank" rel="noopener" style="color:var(--gold)" data-en="Chat on WhatsApp">Falar no WhatsApp</a>
+  <div class="mm-lang">
+    <span class="mm-lang-opt active" data-lang="pt" onclick="__setLang('pt')">PT</span>
+    <span class="mm-lang-opt" data-lang="en" onclick="__setLang('en')">EN</span>
+  </div>
 </nav>
 
 <!-- ===== HERO ===== -->
@@ -293,19 +315,19 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
   <div class="hero-bg"><img src="assets/img/hero.jpg" alt="Terraço com piscina e vista de mar no Algarve" fetchpriority="high"></div>
   <div class="hero-inner">
     <div class="hero-content">
-      <span class="eyebrow">A sua casa de férias no Algarve</span>
-      <h1>Descubra os nossos <em>alojamentos exclusivos</em> no Algarve</h1>
-      <p class="sub">Casas cuidadosamente preparadas para proporcionar conforto, tranquilidade e uma experiência única junto ao mar.</p>
+      <span class="eyebrow" data-en="Your holiday home in the Algarve">A sua casa de férias no Algarve</span>
+      <h1 data-en="Discover our <em>exclusive accommodations</em> in the Algarve">Descubra os nossos <em>alojamentos exclusivos</em> no Algarve</h1>
+      <p class="sub" data-en="Homes carefully prepared to provide comfort, tranquillity, and a unique seaside experience.">Casas cuidadosamente preparadas para proporcionar conforto, tranquilidade e uma experiência única junto ao mar.</p>
       <div class="hero-intro">
-        <p>Localizadas na zona da <strong>Praia da Lota, Manta Rota e Cabanas de Tavira</strong>, as nossas moradias oferecem o equilíbrio perfeito entre privacidade, proximidade à praia e qualidade de estadia.</p>
-        <p>Com espaços amplos, zonas exteriores com piscina e todas as comodidades essenciais, cada casa foi pensada para momentos de descanso, convívio e férias memoráveis.</p>
-        <p>Explore as nossas casas e encontre o refúgio ideal para a sua próxima estadia.</p>
+        <p data-en="Located in the areas of <strong>Praia da Lota, Manta Rota, and Cabanas de Tavira</strong>, our villas offer the perfect balance of privacy, proximity to the beach, and high-quality accommodation.">Localizadas na zona da <strong>Praia da Lota, Manta Rota e Cabanas de Tavira</strong>, as nossas moradias oferecem o equilíbrio perfeito entre privacidade, proximidade à praia e qualidade de estadia.</p>
+        <p data-en="With spacious interiors, outdoor areas featuring swimming pools, and all the essential amenities, each property has been designed to create memorable moments of relaxation, togetherness, and unforgettable holidays. A few minutes from the beaches of Cacela Velha, Praia Verde, and Praia do Verde Lago.">Com espaços amplos, zonas exteriores com piscina e todas as comodidades essenciais, cada casa foi pensada para momentos de descanso, convívio e férias memoráveis.</p>
+        <p data-en="Explore our homes and find the perfect retreat for your next stay.">Explore as nossas casas e encontre o refúgio ideal para a sua próxima estadia.</p>
       </div>
       <div class="hero-cta">
-        <a href="#casas" class="btn btn-gold">Ver casas</a>
+        <a href="#casas" class="btn btn-gold" data-en="View properties">Ver casas</a>
         <a href="https://wa.me/351913414117" target="_blank" rel="noopener" class="btn btn-outline-ink">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-          Falar no WhatsApp
+          <span data-en="Chat on WhatsApp">Falar no WhatsApp</span>
         </a>
       </div>
     </div>
@@ -316,8 +338,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
 <section class="casas" id="casas">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">As nossas casas</span>
-      <h2>Descubra o seu <span class="serif-accent">refúgio perfeito</span></h2>
+      <span class="eyebrow" data-en="Our Properties">As nossas casas</span>
+      <h2 data-en="Discover your <span class=&quot;serif-accent&quot;>perfect retreat</span>">Descubra o seu <span class="serif-accent">refúgio perfeito</span></h2>
     </div>
     <div class="casas-grid">
 
@@ -327,8 +349,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
         </a>
         <div class="casa-body">
           <h3>BS House — Manta Rota</h3>
-          <p>Moradia V2 com piscina privada, a poucos minutos da Praia de Manta Rota. Ideal para férias tranquilas em família.</p>
-          <a href="casa-manta-rota.html" class="casa-link">Saber mais <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p data-en="Two-bedroom villa with a private swimming pool, just a few minutes from Manta Rota Beach. Ideal for peaceful family holidays.">Moradia V2 com piscina privada, a poucos minutos da Praia de Manta Rota. Ideal para férias tranquilas em família.</p>
+          <a href="casa-manta-rota.html" class="casa-link"><span data-en="See more">Saber mais</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
 
@@ -338,8 +360,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
         </a>
         <div class="casa-body">
           <h3>Casa à Beira-Mar</h3>
-          <p>Moradia V3 com piscina privada, a poucos metros da praia. Conforto e localização privilegiada para férias no Algarve.</p>
-          <a href="casa-beira-mar.html" class="casa-link">Saber mais <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p data-en="Three-bedroom villa with a private swimming pool, located just a few metres from the beach. Comfort and a prime location for an unforgettable Algarve holiday.">Moradia V3 com piscina privada, a poucos metros da praia. Conforto e localização privilegiada para férias no Algarve.</p>
+          <a href="casa-beira-mar.html" class="casa-link"><span data-en="See more">Saber mais</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
 
@@ -349,8 +371,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
         </a>
         <div class="casa-body">
           <h3>Casa do Mar</h3>
-          <p>Moradia V3 com piscina privada, a poucos passos da Praia da Lota. Espaço, conforto e proximidade ao mar.</p>
-          <a href="casa-do-mar.html" class="casa-link">Saber mais <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p data-en="Three-bedroom villa with a private swimming pool, just steps away from Praia da Lota. Space, comfort, and close proximity to the sea.">Moradia V3 com piscina privada, a poucos passos da Praia da Lota. Espaço, conforto e proximidade ao mar.</p>
+          <a href="casa-do-mar.html" class="casa-link"><span data-en="See more">Saber mais</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
 
@@ -360,8 +382,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
         </a>
         <div class="casa-body">
           <h3>Casa da Areia</h3>
-          <p>Moradia V3 com piscina privada, junto à Praia da Lota. Perfeita para quem procura tranquilidade e conforto.</p>
-          <a href="casa-da-areia.html" class="casa-link">Saber mais <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p data-en="Three-bedroom villa with a private swimming pool, located next to Praia da Lota. Perfect for those seeking tranquillity and comfort.">Moradia V3 com piscina privada, junto à Praia da Lota. Perfeita para quem procura tranquilidade e conforto.</p>
+          <a href="casa-da-areia.html" class="casa-link"><span data-en="See more">Saber mais</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
 
@@ -371,8 +393,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
         </a>
         <div class="casa-body">
           <h3>BS House — Cabanas Tavira</h3>
-          <p>Casa V3 com piscina no terraço e localização privilegiada em Cabanas de Tavira. Ideal para férias relaxantes perto do mar.</p>
-          <a href="casa-do-mar.html" class="casa-link">Saber mais <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p data-en="Three-bedroom house with a rooftop swimming pool and a privileged location in Cabanas de Tavira. Ideal for relaxing holidays near the sea.">Casa V3 com piscina no terraço e localização privilegiada em Cabanas de Tavira. Ideal para férias relaxantes perto do mar.</p>
+          <a href="casa-do-mar.html" class="casa-link"><span data-en="See more">Saber mais</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
 
@@ -383,29 +405,29 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
 <section class="valores" id="sobre">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">A experiência BS Houses</span>
-      <h2>Porque escolher as <span class="serif-accent">nossas casas?</span></h2>
+      <span class="eyebrow" data-en="The BS Houses experience">A experiência BS Houses</span>
+      <h2 data-en="Why Choose Our <span class=&quot;serif-accent&quot;>Properties?</span>">Porque escolher as <span class="serif-accent">nossas casas?</span></h2>
     </div>
     <div class="valores-grid">
       <div class="valor reveal">
         <div class="valor-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-5.33-7-11a7 7 0 0114 0c0 5.67-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
-        <h4>Localizações privilegiadas</h4>
-        <p>Moradias na Manta Rota, Praia da Lota e Cabanas de Tavira, no coração do Sotavento Algarvio.</p>
+        <h4 data-en="Prime locations">Localizações privilegiadas</h4>
+        <p data-en="Villas in Manta Rota, Praia da Lota, and Cabanas de Tavira, in the heart of the Eastern Algarve.">Moradias na Manta Rota, Praia da Lota e Cabanas de Tavira, no coração do Sotavento Algarvio.</p>
       </div>
       <div class="valor reveal">
         <div class="valor-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 15c2 0 2-1.5 4-1.5S10 15 12 15s2-1.5 4-1.5S20 15 22 15"/><path d="M2 19c2 0 2-1.5 4-1.5S10 19 12 19s2-1.5 4-1.5S20 19 22 19"/><path d="M17 9a5 5 0 00-10 0"/></svg></div>
-        <h4>Proximidade à praia</h4>
-        <p>A poucos minutos das melhores praias do Algarve, para dias de sol e mar sem complicações.</p>
+        <h4 data-en="Close proximity to the beach">Proximidade à praia</h4>
+        <p data-en="Just a few minutes from the best beaches in the Algarve, for hassle-free days of sun and sea.">A poucos minutos das melhores praias do Algarve, para dias de sol e mar sem complicações.</p>
       </div>
       <div class="valor reveal">
         <div class="valor-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 001 1h12a1 1 0 001-1v-9"/><path d="M9 21v-6h6v6"/></svg></div>
-        <h4>Conforto e privacidade</h4>
-        <p>Espaços amplos com zonas exteriores e piscina privada, pensados para o seu descanso.</p>
+        <h4 data-en="Comfort and privacy">Conforto e privacidade</h4>
+        <p data-en="Spacious interiors with outdoor areas and a private swimming pool, designed for your relaxation.">Espaços amplos com zonas exteriores e piscina privada, pensados para o seu descanso.</p>
       </div>
       <div class="valor reveal">
         <div class="valor-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 7L9 18l-5-5"/></svg></div>
-        <h4>Casas totalmente equipadas</h4>
-        <p>Cada moradia inclui todas as comodidades essenciais para uma estadia tranquila e completa.</p>
+        <h4 data-en="Fully equipped homes">Casas totalmente equipadas</h4>
+        <p data-en="Each villa includes all the essential amenities for a peaceful and complete stay.">Cada moradia inclui todas as comodidades essenciais para uma estadia tranquila e completa.</p>
       </div>
     </div>
   </div>
@@ -415,8 +437,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
 <section class="reviews">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Avaliações</span>
-      <h2>O que <span class="serif-accent">dizem sobre nós</span></h2>
+      <span class="eyebrow" data-en="Reviews">Avaliações</span>
+      <h2 data-en="What our <span class=&quot;serif-accent&quot;>guests say</span>">O que <span class="serif-accent">dizem sobre nós</span></h2>
     </div>
     <div class="rev-grid" id="revGrid"></div>
   </div>
@@ -426,8 +448,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
 <section class="faq">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Ajuda</span>
-      <h2>Perguntas <span class="serif-accent">Frequentes</span></h2>
+      <span class="eyebrow" data-en="Help">Ajuda</span>
+      <h2 data-en="Frequently Asked <span class=&quot;serif-accent&quot;>Questions</span>">Perguntas <span class="serif-accent">Frequentes</span></h2>
     </div>
     <div class="faq-wrap" id="faqWrap"></div>
   </div>
@@ -436,8 +458,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
 <!-- ===== DUVIDA ===== -->
 <section class="duvida">
   <div class="wrap"><div class="inner reveal">
-    <h3>Ainda tem dúvidas?</h3>
-    <p>Fale connosco diretamente e teremos todo o gosto em ajudar.</p>
+    <h3 data-en="Still have questions?">Ainda tem dúvidas?</h3>
+    <p data-en="Contact us directly — we’ll be happy to help.">Fale connosco diretamente e teremos todo o gosto em ajudar.</p>
     <a href="https://wa.me/351913414117" target="_blank" rel="noopener" class="btn btn-gold">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
       Falar no WhatsApp
@@ -448,11 +470,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
 <section class="cta-band" id="contactos">
   <svg class="waves top" viewBox="0 0 1200 40" preserveAspectRatio="none" width="100%" height="30"><path d="M0,22 Q100,8 200,22 T400,22 T600,22 T800,22 T1000,22 T1200,22" fill="none" stroke="#fff" stroke-width="1.6" opacity=".7"/><path d="M0,30 Q100,16 200,30 T400,30 T600,30 T800,30 T1000,30 T1200,30" fill="none" stroke="#fff" stroke-width="1.2" opacity=".4"/></svg>
   <div class="wrap"><div class="inner reveal">
-    <h2>Pronto para as suas próximas férias?</h2>
-    <p>Fale connosco e encontre a casa ideal para si.</p>
+    <h2 data-en="Ready for your next holiday?">Pronto para as suas próximas férias?</h2>
+    <p data-en="Get in touch with us and find the perfect home for your stay.">Fale connosco e encontre a casa ideal para si.</p>
     <a href="https://wa.me/351913414117" target="_blank" rel="noopener" class="btn btn-outline">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H5.17L4 17.17z"/></svg>
-      Contactar
+      <span data-en="Contact us">Contactar</span>
     </a>
   </div></div>
   <svg class="waves bottom" viewBox="0 0 1200 40" preserveAspectRatio="none" width="100%" height="30"><path d="M0,22 Q100,8 200,22 T400,22 T600,22 T800,22 T1000,22 T1200,22" fill="none" stroke="#fff" stroke-width="1.6" opacity=".7"/><path d="M0,30 Q100,16 200,30 T400,30 T600,30 T800,30 T1000,30 T1200,30" fill="none" stroke="#fff" stroke-width="1.2" opacity=".4"/></svg>
@@ -464,29 +486,29 @@ footer{background:var(--ink);color:rgba(255,255,255,.8);padding:70px 0 32px}
     <div class="foot-grid">
       <div class="foot-brand">
         <img src="assets/img/logo.png" alt="BS Houses">
-        <p>A sua casa de férias no Algarve. Moradias com piscina privada na Manta Rota, Praia da Lota e Cabanas de Tavira.</p>
+        <p data-en="Your holiday home in the Algarve. Villas with a private swimming pool in Manta Rota, Praia da Lota, and Cabanas de Tavira.">A sua casa de férias no Algarve. Moradias com piscina privada na Manta Rota, Praia da Lota e Cabanas de Tavira.</p>
       </div>
       <div class="foot-col">
-        <h4>Navegação</h4>
+        <h4 data-en="Navigation">Navegação</h4>
         <ul>
-          <li><a href="#">Início</a></li>
-          <li><a href="#casas">Casas</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#contactos">Contactos</a></li>
+          <li><a href="#" data-en="Home">Início</a></li>
+          <li><a href="#casas" data-en="Properties">Casas</a></li>
+          <li><a href="#sobre" data-en="About">Sobre</a></li>
+          <li><a href="#contactos" data-en="Contact">Contactos</a></li>
         </ul>
       </div>
       <div class="foot-col">
-        <h4>Contactos</h4>
+        <h4 data-en="Contact">Contactos</h4>
         <ul class="foot-contact">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg><span>Telefone / WhatsApp<br><a href="https://wa.me/351913414117">+351 913 41 41 17</a><span class="anacom">(chamada para rede fixa/móvel nacional)</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg><span><span data-en="Phone / WhatsApp">Telefone / WhatsApp</span><br><a href="https://wa.me/351913414117">+351 913 41 41 17</a><span class="anacom">(chamada para rede fixa/móvel nacional)</span></span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg><span><a href="mailto:info@bshousesalgarve.com">info@bshousesalgarve.com</a></span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Manta Rota, Praia da Lota e Cabanas de Tavira, Sotavento Algarvio, Portugal</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-en="Manta Rota, Praia da Lota, and Cabanas de Tavira, Eastern Algarve, Portugal">Manta Rota, Praia da Lota e Cabanas de Tavira, Sotavento Algarvio, Portugal</span></li>
         </ul>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>&copy; 2026 BS Houses. Todos os direitos reservados.</span>
-      <span>A sua casa de férias no Algarve</span>
+      <span data-en="&copy; 2026 BS Houses. All rights reserved.">&copy; 2026 BS Houses. Todos os direitos reservados.</span>
+      <span data-en="Your holiday home in the Algarve">A sua casa de férias no Algarve</span>
     </div>
   </div>
 </footer>
@@ -548,6 +570,33 @@ mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.
 // ===== Reveal on scroll =====
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -60px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script>
+(function(){
+  function apply(l){
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      if(el.dataset.pt===undefined) el.dataset.pt=el.innerHTML;
+      el.innerHTML = (l==='en') ? el.dataset.en : el.dataset.pt;
+    });
+    document.querySelectorAll('[data-en-ph]').forEach(function(el){
+      if(el.dataset.ptPh===undefined) el.dataset.ptPh=el.getAttribute('placeholder')||'';
+      el.setAttribute('placeholder',(l==='en')?el.getAttribute('data-en-ph'):el.dataset.ptPh);
+    });
+    document.documentElement.lang=l;
+    try{localStorage.setItem('bs_lang',l);}catch(e){}
+    document.querySelectorAll('[data-lang-label]').forEach(function(el){el.textContent=l.toUpperCase();});
+    document.querySelectorAll('.lang-opt,.mm-lang-opt').forEach(function(o){o.classList.toggle('active',o.getAttribute('data-lang')===l);});
+    var sel=document.getElementById('langSel'); if(sel) sel.classList.remove('open');
+  }
+  window.__setLang=apply;
+  var s=null; try{s=localStorage.getItem('bs_lang');}catch(e){}
+  document.addEventListener('DOMContentLoaded',function(){
+    apply(s||'pt');
+    var sel=document.getElementById('langSel'), tg=document.getElementById('langToggle');
+    if(tg&&sel){tg.addEventListener('click',function(e){e.stopPropagation();sel.classList.toggle('open');});}
+    document.addEventListener('click',function(e){if(sel&&!sel.contains(e.target))sel.classList.remove('open');});
+  });
+})();
 </script>
 </body>
 </html>
